@@ -1,7 +1,7 @@
 import scipy.constants as sc
 from scipy.optimize import root
 
-Q = 1200
+Q = 1200    # 电熨斗的功率，课本缺失
 A = 300e-4
 epsilon = 0.9
 t_a = 25

@@ -1,4 +1,4 @@
-from scipy.optimize import fsolve
+from scipy.optimize import root
 import numpy as np
 
 d_i = 8.25e-3       # 合金管内径
@@ -28,20 +28,20 @@ A_o = np.pi * d_o
 Q = phi_dot * np.pi * d_i**2 / 4    # 铀棒热功率
 
 
-def equations(p):
+def expressions(p):
     """ T_u, T_i, T_o都是未知数，有三个关于它们的方程，因此可以求解方程组。
         其中，lambda_zir是关于(T_i + T_o) / 2的函数。
     """
     T_u, T_i, T_o = p
-    err1 = Q - h_ct * A_i * (T_u - T_i)
-    err2 = Q - h_o * A_o * (T_o - T_f)
-    err3 = Q - 2 * np.pi * lambda_zir((T_i + T_o) / 2) * (T_i - T_o) \
+    expr1 = Q - h_ct * A_i * (T_u - T_i)
+    expr2 = Q - h_o * A_o * (T_o - T_f)
+    expr3 = Q - 2 * np.pi * lambda_zir((T_i + T_o) / 2) * (T_i - T_o) \
            / np.log(d_o / d_i)
-    return err1, err2, err3
+    return expr1, expr2, expr3
 
 
 guess_value = np.array([1000, 900, 800])
-T_u, T_i, T_o = fsolve(equations, guess_value)
+T_u, T_i, T_o = root(expressions, guess_value).x
 
 
 # def eqation2(p):
@@ -51,6 +51,6 @@ T_u, T_i, T_o = fsolve(equations, guess_value)
 
 
 guess_value2 = T_u + 100
-T_max = fsolve(lambda T_max: T_max - 1 / 4 * phi_dot * (d_i**2 / 4) / lambda_u((T_max + T_u) / 2) - T_u,
-               guess_value2)[0]
+T_max = root(lambda T_max: T_max - 1 / 4 * phi_dot * (d_i**2 / 4) / lambda_u((T_max + T_u) / 2) - T_u,
+               guess_value2).x[0]
 print(f"稳态过程中，铀棒的最高温度为{T_max:.0f} K")
