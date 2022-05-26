@@ -23,6 +23,7 @@ def expressions(p):
     xpr7 = lambda_air2 - psi('L', 'T', sc.convert_temperature(((t_34 + t_45) / 2), 'C', 'K'), 'P', air_pressure, 'Air')
     return [xpr1, xpr2, xpr3, xpr4, xpr5, xpr6, xpr7]
 
+
 guess_value = [t_i- 1, t_i-2, t_i-3, t_i-4, 1, lambda_g, lambda_g]
 t_12, t_23, t_34, t_45, q, lambda_air1, lambda_air2 = root(expressions, guess_value).x
 print(f'q = {q:.2f} W/m^2')

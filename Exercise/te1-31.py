@@ -9,4 +9,4 @@ T_w1 = sc.convert_temperature(t_w1, 'C', 'K')
 T_w2 = sc.convert_temperature(t_w2, 'C', 'K')
 q = sc.sigma * (T_w2**4 - T_w1**4)
 t_w3 = t_w2 + q * delta / lambda_
-print(f"t_w3 = {t_w3:.2f}摄氏度")
+print(f"t_w3 = {t_w3:.2f} C")

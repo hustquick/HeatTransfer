@@ -12,4 +12,4 @@ h = 29.1
 ratio = fin_tip_Delta_T_ratio(H, np.pi*1, np.pi*1*delta, lambda_, h)
 guess_value = t_0 + 10
 t_f = root(lambda t_f: ratio - (t_f - t_show) / (t_f - t_0), guess_value).x[0]
-print(f't_f = {t_f:.2f}C')
+print(f't_f = {t_f:.2f} C')

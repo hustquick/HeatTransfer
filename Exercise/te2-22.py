@@ -7,7 +7,7 @@ lambda_ = 1.8e-4
 t = -195.6
 t_a = 25
 gamma = 199.6e3
-time = day
+time = 1*day
 
 R = spherical_wall_R(d/2, d/2+delta, lambda_)
 Phi = (t_a - t) / R

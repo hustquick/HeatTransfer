@@ -29,5 +29,5 @@ guess_value = [t_in - 10, t_in - 20, 1]
 t_12, t_23, q = root(expressions, guess_value).x
 Q = q * tau
 print(f'Q = {Q:.2f} J/m^2-h')
-print(f't_12 = {t_12:.2f}C')
+print(f't_12 = {t_12:.2f} C')
 
