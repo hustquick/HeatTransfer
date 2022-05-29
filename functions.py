@@ -21,6 +21,10 @@ def spherical_wall_R(r1, r2, lambda_):
     return (1/r1 - 1/r2) / (4*np.pi*lambda_)
 
 
+def sphere_Delta_T_with_heat_source(r, lambda_, q_dot):
+    return q_dot * r**2 / (6 * lambda_)
+
+
 def fin_tip_m(perimeter, A_c, lambda_, h):
     return np.sqrt(h * perimeter / (lambda_ * A_c))
 
