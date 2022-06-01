@@ -31,6 +31,7 @@ def fin_tip_m(perimeter, A_c, lambda_, h):
 
 def fin_tip_efficiency(H, perimeter, A_c, lambda_, h):
     '''
+    计算等截面肋片的效率
 
     :param H: 肋片的高度
     :param perimeter: 肋片的周长
@@ -51,7 +52,9 @@ def fin_tip_R(H, perimeter, A_c, lambda_, h):
 
 
 def fin_tip_efficiency2(H, A_L, lambda_, h):
-    """可应用于环肋的效率计算
+    """
+    可应用于环肋的效率计算
+
     :param H: 肋片的高度
     :param A_L: 肋片的纵剖面积
     :param lambda_: 肋片的导热系数
@@ -65,13 +68,14 @@ def fin_tip_efficiency2(H, A_L, lambda_, h):
 
 def fin_tip_Delta_T_ratio(H, perimeter, A_c, lambda_, h):
     '''
+    计算肋片的底端温差与顶端温差之比
 
     :param H: 肋片的高度
     :param perimeter: 肋片的周长
     :param A_c: 肋片的截面积
     :param lambda_: 肋片的导热系数
     :param h: 肋片的对流传热系数
-    :return: 肋片的底端温差与顶端温差之比
+    :return:
     '''
     m = fin_tip_m(perimeter, A_c, lambda_, h)
     # print(f'm={m}')
@@ -81,10 +85,11 @@ def fin_tip_Delta_T_ratio(H, perimeter, A_c, lambda_, h):
 
 def overall_fin_surface_efficiency(A_f, A_r, eta_f):
     '''
+    计算肋片的整体效率
 
     :param A_f: 肋片的表面积
     :param A_r: 两个肋片之间的根部表面积
     :param eta_f: 肋片的效率
-    :return: 肋片的整体效率
+    :return:
     '''
     return (A_r + eta_f * A_f) / (A_r + A_f)

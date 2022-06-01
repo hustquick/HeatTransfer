@@ -1,5 +1,6 @@
 from Functions.UnsteadyStateConduction import mu, theta_to_theta_0_ratio
 from scipy.optimize import root
+import numpy as np
 
 d = 400e-3
 t_0 = 20
@@ -24,7 +25,7 @@ def expressions(p):
     return ratio_w_to_0 - theta_to_theta_0_ratio(mu, eta, Fo, shape)
 
 
-guess_values = 1
+guess_values = np.ones(1)
 Fo = root(expressions, guess_values).x[0]
 l_c = r
 tau = Fo * l_c**2 / a
