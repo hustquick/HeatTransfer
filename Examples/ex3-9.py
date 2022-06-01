@@ -1,8 +1,5 @@
 from Functions.UnsteadyStateConduction import mu, \
-    theta_to_theta_0_ratio, theta_to_theta_m_ratio
-from scipy.constants import day
-from scipy.optimize import root
-import numpy as np
+    theta_to_theta_0_ratio
 
 shape = ['P', 'C']
 d = 600e-3
@@ -22,7 +19,7 @@ mu_1 = mu(Bi_1, shape[0])
 eta_1 = 0
 ratio_m_to_0_1 = theta_to_theta_0_ratio(mu_1, eta_1, Fo_1, shape[0])
 
-# 先考虑径向，作为无限长圆柱进行分析
+# 再考虑径向，作为无限长圆柱进行分析
 l_c_2 = d / 2
 Bi_2 = h * l_c_2 / lambda_
 Fo_2 = a * tau / l_c_2**2

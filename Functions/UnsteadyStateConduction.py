@@ -18,7 +18,6 @@ def Fo(l_c, rho, c, lambda_, tau):
 
 def theta_to_theta_m_ratio(mu, eta, shape):
     shape_list = ['P', 'C', 'S']
-    ratio_list = [np.cos(mu * eta), jv(0, mu * eta), np.sin(mu * eta) / (mu * eta)]
     if shape not in shape_list:
         print('形状指定错误。\n请指定为P（平板）、C（圆柱）、S（球）之一。')
         return None
