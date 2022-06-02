@@ -1,6 +1,5 @@
 from Functions.UnsteadyStateConduction import mu, \
-    theta_to_theta_0_ratio, theta_to_theta_m_ratio
-from scipy.constants import day
+    theta_to_theta_0_ratio
 from scipy.optimize import root
 import numpy as np
 from CoolProp.CoolProp import PropsSI as psi

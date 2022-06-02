@@ -20,3 +20,4 @@ if Bi < 0.05:
     tau_c = tau_c(l_c, rho, c, h)
     Fo = Fo(l_c, rho, c, lambda_, tau)
     Delta_T_ratio = np.exp(- Bi * Fo)
+    print(f'5分钟后，温度计读数的过余温度为初始过余温度的{Delta_T_ratio:.2%}')
