@@ -4,16 +4,27 @@ from scipy.optimize import root
 from math import erf, erfc
 
 
-def tau_c(l_c, rho, c, h):
+def a(lambda_, rho, c):
+    '''计算热扩散率
+
+    :param lambda_: 导热系数
+    :param rho: 密度
+    :param c: 比热容
+    :return:
+    '''
+    return lambda_ / (rho * c)
+
+
+def tau_c(l_c, lambda_, a, h):
     '''计算时间常数
 
     :param l_c: 特征长度
-    :param rho: 密度
-    :param c: 比热容
+    :param lambda_: 导热系数
+    :param a: 热扩散率
     :param h: 换热系数
     :return:
     '''
-    return rho * c * l_c / h
+    return lambda_ * l_c / (h * a)
 
 
 def Bi(l_c, lambda_, h):
@@ -27,17 +38,15 @@ def Bi(l_c, lambda_, h):
     return l_c * h / lambda_
 
 
-def Fo(l_c, rho, c, lambda_, tau):
+def Fo(tau, l_c, a):
     '''计算Fo数
 
-    :param l_c: 特征长度
-    :param rho: 密度
-    :param c: 比热容
-    :param lambda_: 导热系数
     :param tau: 时间
+    :param l_c: 特征长度
+    :param a: 热扩散率
     :return:
     '''
-    return lambda_ * tau / (rho * c * l_c ** 2)
+    return a * tau / l_c**2
 
 
 def theta_to_theta_m_ratio(mu, eta, shape):
@@ -227,20 +236,4 @@ def q_x_for_constant_t_w(x, tau, t_0, t_w, lambda_, a):
 
 
 if __name__ == '__main__':
-    shape = ['P', 'C']
-    d = 600e-3
-    l = 1000e-3
-    t_0 = 30
-    t_oo = 1300
-    tau = 4 * 3600
-    h = 232
-    lambda_ = 40.5
-    a = 0.625e-5
-
-    l_c_2 = d / 2
-    Bi_2 = h * l_c_2 / lambda_
-    Fo_2 = a * tau / l_c_2 ** 2
-    mu_2 = mu(Bi_2, shape[1])
-    eta_2 = 0
-    ratio_to_0_2 = theta_to_theta_0_ratio(mu_2, eta_2, Fo_2, shape[1])
-    print(ratio_to_0_2)
+    print()

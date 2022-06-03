@@ -1,4 +1,4 @@
-from Functions.UnsteadyStateConduction import tau_c, Bi
+from Functions.UnsteadyStateConduction import tau_c, Bi, a
 import numpy as np
 
 d = 5e-2
@@ -20,6 +20,7 @@ Bi = Bi(l_c, lambda_, h)
 if Bi < 0.05:
     print(f'可以使用集中参数法')
     Delta_T_ratio = (t - t_oo) / (t_0 - t_oo)
-    tau_c = tau_c(l_c, rho, c, h)
+    a = a(lambda_, rho, c)
+    tau_c = tau_c(l_c, lambda_, a, h)
     tau = - tau_c * np.log(Delta_T_ratio)
     print(f'tau = {tau:.0f} s')
