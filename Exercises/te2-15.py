@@ -1,5 +1,5 @@
 from Functions.SteadyStateConduction import cylindrical_wall_R
-import Appendix4_lambda_ as ap4
+from Appendix import Appendix4_lambda_ as ap4
 import sympy as sp
 import numpy as np
 

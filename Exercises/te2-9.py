@@ -1,6 +1,5 @@
-import Appendix5_air_physical_properties as ap5
+from Appendix import Appendix5_air_physical_properties as ap5
 import numpy as np
-from CoolProp.CoolProp import PropsSI as psi
 
 delta_1 = delta_2 = 6e-3
 delta_air = 8e-3

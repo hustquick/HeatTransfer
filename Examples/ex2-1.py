@@ -1,4 +1,4 @@
-from Appendix4_lambda_ import lambda_
+from Appendix.Appendix4_lambda_ import lambda_
 
 material = '水泥珍沪岩制品'
 rho = 300

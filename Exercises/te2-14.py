@@ -1,5 +1,5 @@
 from Functions.SteadyStateConduction import cylindrical_wall_R
-from Appendix4_lambda_ import lambda_
+from Appendix.Appendix4_lambda_ import lambda_
 from scipy.optimize import root
 
 d = 100e-3

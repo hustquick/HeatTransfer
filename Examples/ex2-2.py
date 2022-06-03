@@ -1,4 +1,4 @@
-from Appendix4_lambda_ import lambda_
+from Appendix.Appendix4_lambda_ import lambda_
 from scipy.optimize import root
 
 material1 = '耐火黏土砖'
