@@ -50,7 +50,7 @@ def Fo(tau, l_c, a):
 
 
 def theta_to_theta_m_ratio(mu, eta, shape):
-    '''计算非稳态导热正规状况阶段，任意时刻平板中某处（由eta = x/l_c确定位置）过余温度与中心过余温度之比
+    '''计算非稳态导热正规状况阶段，任意时刻某处（由eta = x/l_c确定位置）过余温度与中心过余温度之比
 
     :param mu: 对应形状的超越方程的根，可由mu函数求得
     :param eta: 无量纲位置，由 eta = x/l_c 求得
@@ -66,11 +66,14 @@ def theta_to_theta_m_ratio(mu, eta, shape):
     elif shape == 'C':
         return jv(0, mu * eta)
     else:
-        return np.sin(mu * eta) / (mu * eta)
+        if eta == 0:
+            return 1
+        else:
+            return np.sin(mu * eta) / (mu * eta)
 
 
 def theta_to_theta_0_ratio(mu, eta, Fo, shape):
-    '''计算非稳态导热正规状况阶段，任意时刻平板中某处（由eta = x/l_c确定位置）过余温度与初始过余温度之比
+    '''计算非稳态导热正规状况阶段，任意时刻某处（由eta = x/l_c确定位置）过余温度与初始过余温度之比
 
     :param mu: 对应形状的超越方程的根，可由mu函数求得
     :param eta: 无量纲位置，由 eta = x/l_c 求得
