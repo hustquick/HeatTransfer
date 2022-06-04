@@ -1,4 +1,4 @@
-from Functions.UnsteadyStateConduction import mu, \
+from Functions.UnsteadyStateConduction import get_mu, \
     theta_to_theta_0_ratio, Q_to_Q_0_ratio
 from scipy.optimize import root
 import numpy as np
@@ -38,7 +38,7 @@ def expressions(p):
     l_c_1 = H / 2
     Bi_1 = h * l_c_1 / lambda_a
     Fo_1 = a_a * tau / l_c_1**2
-    mu_1 = mu(Bi_1, shape[0])
+    mu_1 = get_mu(Bi_1, shape[0])
     eta_1 = 0
     ratio_m_to_0_1 = theta_to_theta_0_ratio(mu_1, eta_1, Fo_1, shape[0])
 
@@ -46,7 +46,7 @@ def expressions(p):
     l_c_2 = D / 2
     Bi_2 = h * l_c_2 / lambda_a
     Fo_2 = a_a * tau / l_c_2**2
-    mu_2 = mu(Bi_2, shape[1])
+    mu_2 = get_mu(Bi_2, shape[1])
     eta_2 = 0
     ratio_m_to_0_2 = theta_to_theta_0_ratio(mu_2, eta_2, Fo_2, shape[1])
 
@@ -63,14 +63,14 @@ print(f'tau = {tau:.0f} s')
 l_c_1 = H / 2
 Bi_1 = h * l_c_1 / lambda_a
 Fo_1 = a_a * tau / l_c_1**2
-mu_1 = mu(Bi_1, shape[0])
+mu_1 = get_mu(Bi_1, shape[0])
 Q_to_Q_0_1 = Q_to_Q_0_ratio(mu_1, Fo_1, shape[0])
 
 # 再考虑径向，作为无限长圆柱进行分析
 l_c_2 = D / 2
 Bi_2 = h * l_c_2 / lambda_a
 Fo_2 = a_a * tau / l_c_2**2
-mu_2 = mu(Bi_2, shape[1])
+mu_2 = get_mu(Bi_2, shape[1])
 Q_to_Q_0_2 = Q_to_Q_0_ratio(mu_2, Fo_2, shape[1])
 
 Q_to_Q_0 = Q_to_Q_0_1 + Q_to_Q_0_2 * (1 - Q_to_Q_0_1)

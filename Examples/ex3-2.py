@@ -1,4 +1,4 @@
-from Functions.UnsteadyStateConduction import a, tau_c, Bi, Fo
+from Functions.UnsteadyStateConduction import get_a, get_tau_c, get_Bi, get_Fo
 import numpy as np
 
 length = 20e-3
@@ -13,11 +13,11 @@ r = d/2
 V = np.pi * r**2 * length
 A = np.pi * r**2 + np.pi * d * length
 l_c = V / A
-Bi = Bi(l_c, lambda_, h)
+Bi = get_Bi(l_c, lambda_, h)
 if Bi < 0.05:
     print(f'可以使用集中参数法')
-    a = a(lambda_, rho, c)
-    tau_c = tau_c(l_c, lambda_, a, h)
-    Fo = Fo(tau, l_c, a)
+    a = get_a(lambda_, rho, c)
+    tau_c = get_tau_c(l_c, lambda_, a, h)
+    Fo = get_Fo(tau, l_c, a)
     Delta_T_ratio = np.exp(- Bi * Fo)
     print(f'5分钟后，温度计读数的过余温度为初始过余温度的{Delta_T_ratio:.2%}')

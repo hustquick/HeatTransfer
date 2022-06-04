@@ -1,4 +1,4 @@
-from Functions.UnsteadyStateConduction import mu, \
+from Functions.UnsteadyStateConduction import get_mu, \
     theta_to_theta_0_ratio
 
 shape = 'P'
@@ -14,21 +14,21 @@ h = 348
 
 Bi_1 = h * delta_1 / lambda_
 Fo_1 = a * tau / delta_1**2
-mu_1 = mu(Bi_1, shape)
+mu_1 = get_mu(Bi_1, shape)
 ratio_w_to_0_1 = theta_to_theta_0_ratio(mu_1, 1, Fo_1, shape)
 ratio_m_to_0_1 = theta_to_theta_0_ratio(mu_1, 0, Fo_1, shape)
 
 
 Bi_2 = h * delta_2 / lambda_
 Fo_2 = a * tau / delta_2**2
-mu_2 = mu(Bi_2, shape)
+mu_2 = get_mu(Bi_2, shape)
 ratio_w_to_0_2 = theta_to_theta_0_ratio(mu_2, 1, Fo_2, shape)
 ratio_m_to_0_2 = theta_to_theta_0_ratio(mu_2, 0, Fo_2, shape)
 
 
 Bi_3 = h * delta_3 / lambda_
 Fo_3 = a * tau / delta_3**2
-mu_3 = mu(Bi_3, shape)
+mu_3 = get_mu(Bi_3, shape)
 ratio_w_to_0_3 = theta_to_theta_0_ratio(mu_3, 1, Fo_3, shape)
 ratio_m_to_0_3 = theta_to_theta_0_ratio(mu_3, 0, Fo_3, shape)
 

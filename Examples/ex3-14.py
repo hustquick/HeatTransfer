@@ -1,4 +1,4 @@
-from Functions.UnsteadyStateConduction import t_x_for_constant_q_0, mu, theta_to_theta_0_ratio, Q_to_Q_0_ratio
+from Functions.UnsteadyStateConduction import t_x_for_constant_q_0, get_mu, theta_to_theta_0_ratio, Q_to_Q_0_ratio
 import scipy.constants as sc
 from CoolProp.CoolProp import PropsSI as psi
 import numpy as np
@@ -36,7 +36,7 @@ def expressions(p):
     l_c_1 = height / 2
     Bi_1 = h * l_c_1 / lambda_
     Fo_1 = a * tau / l_c_1**2
-    mu_1 = mu(Bi_1, shape[0])
+    mu_1 = get_mu(Bi_1, shape[0])
     eta_1 = 0
     ratio_m_to_0_1 = theta_to_theta_0_ratio(mu_1, eta_1, Fo_1, shape[0])
     Q_to_Q_0_1 = Q_to_Q_0_ratio(mu_1, Fo_1, shape[0])
@@ -45,7 +45,7 @@ def expressions(p):
     l_c_2 = d / 2
     Bi_2 = h * l_c_2 / lambda_
     Fo_2 = a * tau / l_c_2**2
-    mu_2 = mu(Bi_2, shape[1])
+    mu_2 = get_mu(Bi_2, shape[1])
     eta_2 = 0
     ratio_m_to_0_2 = theta_to_theta_0_ratio(mu_2, eta_2, Fo_2, shape[1])
     Q_to_Q_0_2 = Q_to_Q_0_ratio(mu_2, Fo_2, shape[1])
@@ -72,7 +72,7 @@ a = lambda_ / (rho * c)
 l_c_1 = height / 2
 Bi_1 = h * l_c_1 / lambda_
 Fo_1 = a * tau / l_c_1 ** 2
-mu_1 = mu(Bi_1, shape[0])
+mu_1 = get_mu(Bi_1, shape[0])
 eta_1 = 0
 ratio_m_to_0_1 = theta_to_theta_0_ratio(mu_1, eta_1, Fo_1, shape[0])
 Q_to_Q_0_1 = Q_to_Q_0_ratio(mu_1, Fo_1, shape[0])
@@ -81,7 +81,7 @@ Q_to_Q_0_1 = Q_to_Q_0_ratio(mu_1, Fo_1, shape[0])
 l_c_2 = d / 2
 Bi_2 = h * l_c_2 / lambda_
 Fo_2 = a * tau / l_c_2 ** 2
-mu_2 = mu(Bi_2, shape[1])
+mu_2 = get_mu(Bi_2, shape[1])
 eta_2 = 0
 ratio_m_to_0_2 = theta_to_theta_0_ratio(mu_2, eta_2, Fo_2, shape[1])
 Q_to_Q_0_2 = Q_to_Q_0_ratio(mu_2, Fo_2, shape[1])

@@ -1,4 +1,4 @@
-from Functions.UnsteadyStateConduction import Bi, theta_to_theta_m_ratio, theta_to_theta_0_ratio
+from Functions.UnsteadyStateConduction import get_Bi, theta_to_theta_m_ratio, theta_to_theta_0_ratio
 import numpy as np
 from scipy.optimize import root
 
@@ -14,7 +14,7 @@ Bi_list = [0.1, 0.5, 1.0]
 mu_list = [0.3111, 0.6533, 0.8603]
 shape = 'P'
 
-Bi = Bi(delta, lambda_, h)
+Bi = get_Bi(delta, lambda_, h)
 mu = np.interp(Bi, Bi_list, mu_list)
 
 x = delta

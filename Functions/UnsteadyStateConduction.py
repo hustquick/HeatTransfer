@@ -4,7 +4,7 @@ from scipy.optimize import root
 from math import erf, erfc
 
 
-def a(lambda_, rho, c):
+def get_a(lambda_, rho, c):
     '''计算热扩散率
 
     :param lambda_: 导热系数
@@ -15,7 +15,7 @@ def a(lambda_, rho, c):
     return lambda_ / (rho * c)
 
 
-def tau_c(l_c, lambda_, a, h):
+def get_tau_c(l_c, lambda_, a, h):
     '''计算时间常数
 
     :param l_c: 特征长度
@@ -27,7 +27,7 @@ def tau_c(l_c, lambda_, a, h):
     return lambda_ * l_c / (h * a)
 
 
-def Bi(l_c, lambda_, h):
+def get_Bi(l_c, lambda_, h):
     '''计算Bi数
 
     :param l_c: 特征长度
@@ -38,7 +38,7 @@ def Bi(l_c, lambda_, h):
     return l_c * h / lambda_
 
 
-def Fo(tau, l_c, a):
+def get_Fo(tau, l_c, a):
     '''计算Fo数
 
     :param tau: 时间
@@ -123,7 +123,7 @@ def Q_to_Q_0_ratio(mu, Fo, shape):
     return 1 - A*part_2*B
 
 
-def mu(Bi, shape):
+def get_mu(Bi, shape):
     '''求解非稳态导热正规状况阶段的mu的值。
     当Bi不为无穷大时，可以通过root函数求解超越方程。
     当Bi为无穷大时，采用工程近似拟合公式计算

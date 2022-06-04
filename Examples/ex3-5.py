@@ -1,4 +1,4 @@
-from Functions.UnsteadyStateConduction import mu, theta_to_theta_0_ratio
+from Functions.UnsteadyStateConduction import get_mu, theta_to_theta_0_ratio
 from scipy.optimize import root
 import numpy as np
 
@@ -15,14 +15,14 @@ shape = 'C'
 r = d/2
 eta = 1
 Bi = h*r/lambda_
-mu = mu(Bi, shape)
+mu = get_mu(Bi, shape)
 
 ratio_w_to_0 = (t - t_oo)/(t_0 - t_oo)
 
 
 def expressions(p):
     Fo = p
-    return ratio_w_to_0 - theta_to_theta_0_ratio(mu, eta, Fo, shape)
+    return ratio_w_to_0 - theta_to_theta_0_ratio(get_mu, eta, Fo, shape)
 
 
 guess_values = np.ones(1)
