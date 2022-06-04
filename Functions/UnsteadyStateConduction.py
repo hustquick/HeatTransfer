@@ -79,7 +79,7 @@ def theta_to_theta_m_ratio(mu, eta, shape):
 
 def theta_to_theta_0_ratio(mu, eta, Fo, shape):
     '''
-    计算非稳态导热正规状况阶段，任意时刻某处（由eta = x/l_c确定位置）过余温度与初始过余温度之比
+    计算非稳态导热正规状况阶段（前提Fo>0.2），任意时刻某处（由eta = x/l_c确定位置）过余温度与初始过余温度之比
 
     :param mu: 对应形状的超越方程的根，可由mu函数求得
     :param eta: 无量纲位置，由 eta = x/l_c 求得
@@ -87,47 +87,55 @@ def theta_to_theta_0_ratio(mu, eta, Fo, shape):
     :param shape: 形状，可取'P'，'C'或'S'，分别对应平板，圆柱，球
     :return: 过余温度与初始过余温度之比
     '''
-    shape_list = ['P', 'C', 'S']
-    if shape not in shape_list:
-        print('形状指定错误。\n请指定为P（平板）、C（圆柱）、S（球）之一。')
+    if np.all(Fo > 0.2):  # 为了保持广播特性，采用np.all()
+        shape_list = ['P', 'C', 'S']
+        if shape not in shape_list:
+            print('形状指定错误。\n请指定为P（平板）、C（圆柱）、S（球）之一。')
+            return None
+        arg = shape_list.index(shape)
+        A_a = 2 * np.sin(mu) / (mu + np.sin(mu) * np.cos(mu))
+        A_b = 2/mu * jv(1, mu) / (jv(0, mu)**2 + jv(1, mu)**2)
+        A_c = 2*(np.sin(mu) - mu*np.cos(mu)) / (mu - np.sin(mu)*np.cos(mu))
+        A_list = np.array([A_a, A_b, A_c])
+        A = A_list[arg]
+        part_2 = np.exp(-mu**2*Fo)
+        f = theta_to_theta_m_ratio(mu, eta, shape)
+        return A*part_2*f
+    else:
+        print(f'Fo <= 2，不能使用该公式！')
         return None
-    arg = shape_list.index(shape)
-    A_a = 2 * np.sin(mu) / (mu + np.sin(mu) * np.cos(mu))
-    A_b = 2/mu * jv(1, mu) / (jv(0, mu)**2 + jv(1, mu)**2)
-    A_c = 2*(np.sin(mu) - mu*np.cos(mu)) / (mu - np.sin(mu)*np.cos(mu))
-    A_list = np.array([A_a, A_b, A_c])
-    A = A_list[arg]
-    part_2 = np.exp(-mu**2*Fo)
-    f = theta_to_theta_m_ratio(mu, eta, shape)
-    return A*part_2*f
 
 
 def Q_to_Q_0_ratio(mu, Fo, shape):
     '''
-    计算非稳态导热正规状况阶段，物体吸收的总热量与理论可以吸收的最大热量之比
+    计算非稳态导热正规状况阶段（前提Fo>0.2），物体吸收的总热量与理论可以吸收的最大热量之比
 
     :param mu: 对应形状的超越方程的根，可由mu函数求得
     :param Fo: Fo数，表征非稳态过程进行深度的无量纲时间
     :param shape: 形状，可取'P'，'C'或'S'，分别对应平板，圆柱，球
     :return: 物体吸收的总热量与理论可以吸收的最大热量之比
     '''
-    shape_list = ['P', 'C', 'S']
-    if shape not in shape_list:
-        print('形状指定错误。\n请指定为P（平板）、C（圆柱）、S（球）之一。')
+    if np.all(Fo > 0.2):  # 为了保持广播特性，采用np.all()
+        shape_list = ['P', 'C', 'S']
+        if shape not in shape_list:
+            print('形状指定错误。\n请指定为P（平板）、C（圆柱）、S（球）之一。')
+            return None
+        arg = shape_list.index(shape)
+        A_a = 2 * np.sin(mu) / (mu + np.sin(mu) * np.cos(mu))
+        A_b = 2/mu * jv(1, mu) / (jv(0, mu)**2 + jv(1, mu)**2)
+        A_c = 2*(np.sin(mu) - mu*np.cos(mu)) / (mu - np.sin(mu)*np.cos(mu))
+        A_list = np.array([A_a, A_b, A_c])
+        A = A_list[arg]
+        part_2 = np.exp(-mu**2*Fo)
+        B_a = np.sin(mu)/mu
+        B_b = 2 * jv(1, mu) / mu
+        B_c = 3/mu**3*(np.sin(mu) - mu*np.cos(mu))
+        B_list = np.array([B_a, B_b, B_c])
+        B = B_list[arg]
+        return 1 - A*part_2*B
+    else:
+        print(f'Fo <= 2，不能使用该公式！')
         return None
-    arg = shape_list.index(shape)
-    A_a = 2 * np.sin(mu) / (mu + np.sin(mu) * np.cos(mu))
-    A_b = 2/mu * jv(1, mu) / (jv(0, mu)**2 + jv(1, mu)**2)
-    A_c = 2*(np.sin(mu) - mu*np.cos(mu)) / (mu - np.sin(mu)*np.cos(mu))
-    A_list = np.array([A_a, A_b, A_c])
-    A = A_list[arg]
-    part_2 = np.exp(-mu**2*Fo)
-    B_a = np.sin(mu)/mu
-    B_b = 2 * jv(1, mu) / mu
-    B_c = 3/mu**3*(np.sin(mu) - mu*np.cos(mu))
-    B_list = np.array([B_a, B_b, B_c])
-    B = B_list[arg]
-    return 1 - A*part_2*B
 
 
 def get_mu(Bi, shape):

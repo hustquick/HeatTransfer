@@ -13,6 +13,7 @@ a = 2e-6
 def theta_ratio(delta, x, tau, number_to_calculate):
     sum = 0
     for n in range(1, number_to_calculate+1):
+        # 课本上的公式有误
         sum += 1/n * np.exp(-(n*np.pi/(2*delta))**2 * a*tau) * np.sin(n * np.pi * x / (2*delta))
     return 4/np.pi * sum
 
