@@ -5,57 +5,62 @@ from math import erf, erfc
 
 
 def get_a(lambda_, rho, c):
-    '''计算热扩散率
+    '''
+    计算热扩散率
 
     :param lambda_: 导热系数
     :param rho: 密度
     :param c: 比热容
-    :return:
+    :return: 热扩散率a
     '''
     return lambda_ / (rho * c)
 
 
 def get_tau_c(l_c, lambda_, a, h):
-    '''计算时间常数
+    '''
+    计算时间常数
 
     :param l_c: 特征长度
     :param lambda_: 导热系数
     :param a: 热扩散率
     :param h: 换热系数
-    :return:
+    :return: 时间常数tau
     '''
     return lambda_ * l_c / (h * a)
 
 
 def get_Bi(l_c, lambda_, h):
-    '''计算Bi数
+    '''
+    计算Bi数
 
     :param l_c: 特征长度
     :param lambda_: 导热系数
     :param h: 换热系数
-    :return:
+    :return: Bi数
     '''
     return l_c * h / lambda_
 
 
 def get_Fo(tau, l_c, a):
-    '''计算Fo数
+    '''
+    计算Fo数
 
     :param tau: 时间
     :param l_c: 特征长度
     :param a: 热扩散率
-    :return:
+    :return: Fo数
     '''
     return a * tau / l_c**2
 
 
 def theta_to_theta_m_ratio(mu, eta, shape):
-    '''计算非稳态导热正规状况阶段，任意时刻某处（由eta = x/l_c确定位置）过余温度与中心过余温度之比
+    '''
+    计算非稳态导热正规状况阶段，任意时刻某处（由eta = x/l_c确定位置）过余温度与中心过余温度之比
 
     :param mu: 对应形状的超越方程的根，可由mu函数求得
     :param eta: 无量纲位置，由 eta = x/l_c 求得
     :param shape: 形状，可取'P'，'C'或'S'，分别对应平板，圆柱，球
-    :return:
+    :return: 过余温度与中心过余温度之比
     '''
     shape_list = ['P', 'C', 'S']
     if shape not in shape_list:
@@ -73,13 +78,14 @@ def theta_to_theta_m_ratio(mu, eta, shape):
 
 
 def theta_to_theta_0_ratio(mu, eta, Fo, shape):
-    '''计算非稳态导热正规状况阶段，任意时刻某处（由eta = x/l_c确定位置）过余温度与初始过余温度之比
+    '''
+    计算非稳态导热正规状况阶段，任意时刻某处（由eta = x/l_c确定位置）过余温度与初始过余温度之比
 
     :param mu: 对应形状的超越方程的根，可由mu函数求得
     :param eta: 无量纲位置，由 eta = x/l_c 求得
     :param Fo: Fo数，表征非稳态过程进行深度的无量纲时间
     :param shape: 形状，可取'P'，'C'或'S'，分别对应平板，圆柱，球
-    :return:
+    :return: 过余温度与初始过余温度之比
     '''
     shape_list = ['P', 'C', 'S']
     if shape not in shape_list:
@@ -97,12 +103,13 @@ def theta_to_theta_0_ratio(mu, eta, Fo, shape):
 
 
 def Q_to_Q_0_ratio(mu, Fo, shape):
-    '''计算非稳态导热正规状况阶段，物体吸收的总热量与理论可以吸收的最大热量之比
+    '''
+    计算非稳态导热正规状况阶段，物体吸收的总热量与理论可以吸收的最大热量之比
 
-    :param mu:对应形状的超越方程的根，可由mu函数求得
-    :param Fo:Fo数，表征非稳态过程进行深度的无量纲时间
-    :param shape:形状，可取'P'，'C'或'S'，分别对应平板，圆柱，球
-    :return:
+    :param mu: 对应形状的超越方程的根，可由mu函数求得
+    :param Fo: Fo数，表征非稳态过程进行深度的无量纲时间
+    :param shape: 形状，可取'P'，'C'或'S'，分别对应平板，圆柱，球
+    :return: 物体吸收的总热量与理论可以吸收的最大热量之比
     '''
     shape_list = ['P', 'C', 'S']
     if shape not in shape_list:
@@ -124,13 +131,14 @@ def Q_to_Q_0_ratio(mu, Fo, shape):
 
 
 def get_mu(Bi, shape):
-    '''求解非稳态导热正规状况阶段的mu的值。
+    '''
+    求解非稳态导热正规状况阶段的mu的值。
     当Bi不为无穷大时，可以通过root函数求解超越方程。
     当Bi为无穷大时，采用工程近似拟合公式计算
 
-    :param Bi:Bi数，固体内部单位导热面积上的导热热阻与单位表面积上的换热热阻之比
-    :param shape:形状，可取'P'，'C'或'S'，分别对应平板，圆柱，球
-    :return:
+    :param Bi: Bi数，固体内部单位导热面积上的导热热阻与单位表面积上的换热热阻之比
+    :param shape: 形状，可取'P'，'C'或'S'，分别对应平板，圆柱，球
+    :return: mu
     '''
     a_list = [0.4022, 0.1700, 0.0988]
     if Bi <= 0:
@@ -175,12 +183,27 @@ def t_x_for_constant_t_w(x, tau, t_0, t_w, a):
     :param t_0: 初始温度
     :param t_w: 壁面温度
     :param a: 热扩散系数
-    :return:
+    :return: 指定位置x在时间为tau时的温度
     '''
     part = x/(2*np.sqrt(a*tau))
     theta_ratio = erf(part)
     t = t_w + theta_ratio * (t_0 - t_w)
     return t
+
+
+def q_x_for_constant_t_w(x, tau, t_0, t_w, lambda_, a):
+    '''
+    计算第一类边界条件（壁面温度稳定在某温度）下，指定位置x在时间为tau时的热流密度
+
+    :param x: 指定的位置
+    :param tau: 指定的时间
+    :param t_0: 初始温度
+    :param t_w: 壁面温度
+    :param lambda_: 导热系数
+    :param a: 热扩散系数
+    :return:
+    '''
+    return (t_w - t_0) * lambda_ / (np.sqrt(np.pi * a * tau)) * np.exp(-x**2/(4*a*tau))
 
 
 def t_x_for_constant_q_0(x, tau, t_0, lambda_, a, q_0):
@@ -221,21 +244,6 @@ def t_x_for_constant_h(x, tau, t_0, t_oo, lambda_, a, h):
     theta_ratio = erfc(part1) - np.exp(part2)*erfc(part3)
     t = t_0 + theta_ratio * (t_oo - t_0)
     return t
-
-
-def q_x_for_constant_t_w(x, tau, t_0, t_w, lambda_, a):
-    '''
-    计算第一类边界条件（壁面温度稳定在某温度）下，指定位置x在时间为tau时的热流密度
-
-    :param x: 指定的位置
-    :param tau: 指定的时间
-    :param t_0: 初始温度
-    :param t_w: 壁面温度
-    :param lambda_: 导热系数
-    :param a: 热扩散系数
-    :return:
-    '''
-    return (t_w - t_0) * lambda_ / (np.sqrt(np.pi * a * tau)) * np.exp(-x**2/(4*a*tau))
 
 
 if __name__ == '__main__':
