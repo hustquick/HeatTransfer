@@ -4,18 +4,19 @@ from Functions.UnsteadyStateConduction import theta_to_theta_0_ratio, get_a, get
 import matplotlib.pyplot as plt
 from scipy.integrate import solve_bvp
 
-delta = 300e-3
-t_0 = 20
-t_oo = 1200
-a = 5.55e-6
-h = 290
-Delta_t = 15
-lambda_ = 49.8
+T_oo = 2300
+T_m = 1500
+delta = 10e-3
+lambda_ = 10
+a = 6e-6
+h = 2500
+T_0 = 300
+
+# 保守估计时，认为陶瓷和喷管之间绝热
+# 此时可将陶瓷层看做无限大平板处理
+l_c = delta
 shape = 'P'
 
-t_surface = t_oo - Delta_t
-
-l_c = delta
 Bi = get_Bi(l_c, lambda_, h)
 mu = get_mu(Bi, shape)
 
@@ -23,15 +24,10 @@ mu = get_mu(Bi, shape)
 def expressions(p):
     tau = p
     Fo = get_Fo(tau, l_c, a)
-    xpr = t_surface - t_oo - (t_0 - t_oo) * theta_to_theta_0_ratio(mu, 1, Fo, shape)
+    xpr = T_m - T_oo - (T_0 - T_oo) * theta_to_theta_0_ratio(mu, 0, Fo, shape)
     return xpr
 
 
 guess_value = [1]
 tau = root(expressions, guess_value).x[0]
 print(f'tau = {tau:.0f} s')
-
-Fo = get_Fo(tau, l_c, a)
-t_m = t_oo + (t_0 - t_oo) * theta_to_theta_0_ratio(mu, 0, Fo, shape)
-Delta_t_tau = t_surface - t_m
-print(f'此时钢板两表面的温差为{Delta_t_tau:.0f} C')
