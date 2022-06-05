@@ -3,6 +3,7 @@ import os
 folder = 'Problems'
 os.system('pwd')
 files = os.listdir('../' + folder)
+files.sort()
 os.chdir(f'../{folder}')
 for file in files:
     if file.endswith(".pdf"):
