@@ -20,4 +20,5 @@
 
 1. 本项目所有计算均在Python3.6的环境下编译完成。（由于CoolProp库仅支持3.8以下Python 3的版本，以上解题过程可能在更高版本的python中无法正常运行）
 2. 安装的第三方库包括：numpy, scipy, matplotlib, sympy, coolprop
-3. 可以运行test文件夹下的test_examples.py运行所有例题文件，运行test文件夹下的test_problems.py运行所有习题文件。
+3. 可以运行test文件夹下的test_examples.py运行来求解所有例题，运行test文件夹下的test_problems.py求解所有习题。
+4. 对于Windows系统，如果下载的文件无法正常运行，则需要将下载下来的HeatTransfer文件夹路径添加至**系统路径**(**path**)。
