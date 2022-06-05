@@ -32,6 +32,10 @@ guess_values = 1
 tau = root(expressions, guess_values, method='lm').x[0]
 print(f'tau = {tau:.0f} s')
 
+Fo = get_Fo(tau, l_c, a)
+if np.any([Fo]) <= 0.2:
+    print('Fo数不满足上述公式的要求，上述结果不可靠！')
+
 l_c_1 = delta
 
 Bi_1 = get_Bi(l_c_1, lambda_, h)
@@ -49,3 +53,7 @@ def expressions(p):
 guess_values = 1
 tau_1 = root(expressions, guess_values, method='lm').x[0]
 print(f'tau_1 = {tau_1:.0f} s')
+
+Fo_1 = get_Fo(tau, l_c_1, a)
+if np.any([Fo_1]) <= 0.2:
+    print('Fo数不满足上述公式的要求，上述结果不可靠！')

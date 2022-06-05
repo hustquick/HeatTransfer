@@ -35,3 +35,7 @@ Fo = get_Fo(tau, l_c, a)
 t_m = t_oo + (t_0 - t_oo) * theta_to_theta_0_ratio(mu, 0, Fo, shape)
 Delta_t_tau = t_surface - t_m
 print(f'此时钢板两表面的温差为{Delta_t_tau:.0f} C')
+
+Fo = get_Fo(tau, l_c, a)
+if np.any([Fo]) <= 0.2:
+    print('Fo数不满足上述公式的要求，上述结果不可靠！')

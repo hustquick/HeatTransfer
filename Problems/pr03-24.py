@@ -27,3 +27,7 @@ def expressions(p):
 guess_values = 100000
 tau = root(expressions, guess_values).x[0]
 print(f'圆桂体中心过余温度下降到初值一半所需要的时间为{tau:.0f} s')
+
+Fo = get_Fo(tau, l_c, a)
+if np.any([Fo]) <= 0.2:
+    print('Fo数不满足上述公式的要求，上述结果不可靠！')

@@ -27,3 +27,6 @@ eta = x / l_c
 ratio_m_to_0 = theta_to_theta_0_ratio(mu, eta, Fo, shape)
 t = t_oo + ratio_m_to_0 * (t_0 - t_oo)
 print(f't = {t:.2f} C')
+
+if np.any([Fo]) <= 0.2:
+    print('Fo数不满足上述公式的要求，上述结果不可靠！')

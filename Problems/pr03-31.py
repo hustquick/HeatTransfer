@@ -20,6 +20,7 @@ Bi = get_Bi(l_c, lambda_, h)
 mu = get_mu(Bi, shape)
 a = get_a(lambda_, rho, c)
 
+
 def expressions(p):
     tau = p
     Fo = get_Fo(tau, l_c, a)
@@ -41,3 +42,6 @@ average = Delta_t / delta
 # q = lambda_ * partial_t / partial_x = h * (t_oo - t_0)
 max = h * (t_oo - t_w) / lambda_
 print(f'(3) 平均温度梯度为 {average:.2f} C/m, 最大温度梯度为 {max:.2f} C/m')
+
+if np.any([Fo]) <= 0.2:
+    print('Fo数不满足上述公式的要求，上述结果不可靠！')
