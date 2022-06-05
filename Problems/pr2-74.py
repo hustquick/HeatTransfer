@@ -34,7 +34,7 @@ def expressions(p):
     R_o = 1 / (h_o * area)
 
     R_total = R_i + R_1 + R_2 + R_3 + R_o
-    print(R_i*area, R_1*area, R_2*area, R_3*area, R_o*area, R_total*area)
+    # print(R_i*area, R_1*area, R_2*area, R_3*area, R_o*area, R_total*area)
     xpr1 = Phi - (t_i - t_o) / R_total
     xpr2 = t_i - t_12 - Phi * (R_i + R_1)
     xpr3 = t_i - t_23 - Phi * (R_i + R_1 + R_2)

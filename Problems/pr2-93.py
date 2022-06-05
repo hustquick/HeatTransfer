@@ -1,6 +1,7 @@
 import numpy as np
 from scipy.special import iv
 import matplotlib.pyplot as plt
+import os
 
 delta = 0.0001
 x = np.linspace(delta, 2.5, 1000)
@@ -13,6 +14,7 @@ fig, ax = plt.subplots()
 ax.plot(x, eta)
 ax.set_xlabel('$x$')
 ax.set_ylabel('$\eta(x)$')
-plt.savefig('./te2-93.pdf')
+name = os.path.basename(__file__).split(".")[0]
+plt.savefig(f'./{name}.pdf')
 plt.show()
 

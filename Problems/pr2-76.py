@@ -1,6 +1,7 @@
 from scipy.constants import day
 import numpy as np
 from Functions.SteadyStateConduction import sphere_Delta_T_with_heat_source
+import os
 
 Q = 4000  # J/kg
 time = 1 * day
@@ -49,7 +50,8 @@ print(f'苹果表面温度为{t_r:.2f} C')
 # plt.grid()
 # plt.xlabel('r(m)')
 # plt.ylabel('t(°C)')
-# plt.savefig('./te2-76.pdf')
+# name = os.path.basename(__file__).split(".")[0]
+# plt.savefig(f'./{name}.pdf')
 # plt.show()
 # print(f'苹果中心温度为{t_plot[0]:.2f} C')
 # print(f'苹果表面温度为{t_plot[-1]:.2f} C')

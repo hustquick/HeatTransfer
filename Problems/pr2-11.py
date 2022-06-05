@@ -6,6 +6,8 @@ t_gas = 1700
 h_gas = 1000
 t_air = 400
 h_air = 500
+delta_ceramics = 1e-3   # 缺失
+delta_alloy = 1e-3  # 缺失
 
 R_1 = 1 / h_gas
 R_2 = delta_ceramics / lambda_ceramics  # 缺少条件：陶瓷层的厚度

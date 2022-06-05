@@ -1,6 +1,7 @@
 import numpy as np
 from scipy.integrate import solve_bvp
 import matplotlib.pyplot as plt
+import os
 
 lambda_ = 177
 delta = 6e-3
@@ -38,6 +39,7 @@ plt.plot(x_plot, t_plot)
 plt.grid()
 plt.xlabel('x(m)')
 plt.ylabel('t(°C)')
-plt.savefig('./te2-58.pdf')
+name = os.path.basename(__file__).split(".")[0]
+plt.savefig(f'./{name}.pdf')
 plt.show()
 print(f'最大温度为{t_plot[-1]:.2f} C')

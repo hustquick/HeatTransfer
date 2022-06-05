@@ -2,6 +2,7 @@ from Functions.SteadyStateConduction import fin_tip_efficiency
 import numpy as np
 from scipy.integrate import solve_bvp
 import matplotlib.pyplot as plt
+import os
 
 h_i, h_o = 2, 10
 d_i, d_o = 25e-3, 30e-3
@@ -51,7 +52,8 @@ plt.plot(x_plot, t_plot)
 plt.grid()
 plt.xlabel('x(m)')
 plt.ylabel('t(°C)')
-plt.savefig('./te2-79.pdf')
+name = os.path.basename(__file__).split(".")[0]
+plt.savefig(f'./{name}.pdf')
 plt.show()
 
 

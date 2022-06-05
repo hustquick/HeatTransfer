@@ -17,4 +17,4 @@ R_total = R_1 + R_2 + R_3 + R_in + R_out
 
 q = (t_out - t_in) / R_total
 Q = q * tau
-print(f'Phi = {Phi:.2f} J')
+print(f'Q = {Q:.2f} J')

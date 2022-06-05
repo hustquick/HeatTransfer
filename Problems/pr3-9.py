@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import os
 
 c = 2.094e3
 t_0 = 20
@@ -15,6 +16,7 @@ for tau_c in tau_c_list:
 ax.set_xlabel(r'$\tau$')
 ax.set_ylabel(r'$\theta$')
 ax.legend()
-plt.savefig('te3-9.pdf')
+name = os.path.basename(__file__).split(".")[0]
+plt.savefig(f'./{name}.pdf')
 plt.show()
 

@@ -28,6 +28,6 @@ def expressions(p):
     return xpr
 
 
-guess_value = [1]
+guess_value = 1
 tau = root(expressions, guess_value).x[0]
 print(f'tau = {tau:.0f} s')

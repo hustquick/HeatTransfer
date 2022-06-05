@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import os
 
 plt.rcParams['font.sans-serif'] = 'Arial Unicode MS'
 plt.rcParams['axes.unicode_minus'] = False
@@ -22,11 +23,12 @@ R = R_1 + R_2 + R_3
 A = h * w
 Q = A * (t_in - t_out) / R
 for i, h in enumerate(h_out):
-    print(f' 当传热系数为{h} W/m^2-K 时，散热量为{Q[i]:.2f} W')
+    print(f'当传热系数为{h} W/m^2-K 时，散热量为{Q[i]:.2f} W')
 fig, ax = plt.subplots()
 ax.plot(h_out, Q, 'o-')
 ax.set_xlabel('传热系数(W/m^2-K)')
 ax.set_ylabel('散热量(W)')
 ax.set_title('散热量与传热系数的关系')
-plt.savefig('te1-41.pdf')
+name = os.path.basename(__file__).split(".")[0]
+plt.savefig(f'./{name}.pdf')
 plt.show()

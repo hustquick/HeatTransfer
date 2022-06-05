@@ -3,6 +3,7 @@ from scipy.optimize import root
 from Functions.UnsteadyStateConduction import theta_to_theta_0_ratio, get_a, get_mu, get_Bi, get_Fo
 import matplotlib.pyplot as plt
 from scipy.integrate import solve_bvp
+import os
 
 d = 1e-3
 t_oo = 25
@@ -44,7 +45,8 @@ plt.plot(x_plot, t_plot)
 plt.grid()
 plt.xlabel('tau(s)')
 plt.ylabel('t(°C)')
-plt.savefig('./te3-18.pdf')
+name = os.path.basename(__file__).split(".")[0]
+plt.savefig(f'./{name}.pdf')
 plt.show()
 
 

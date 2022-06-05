@@ -21,3 +21,4 @@ H_2 = H_1 + Q
 h_2 = H_2 / m
 T_2 = psi('T', 'H', h_2, 'P', p, fluid)
 t_2 = const.convert_temperature(T_2, 'K', 'C')
+print(f'房间的平均温度为：{t_2:.2f} C')
