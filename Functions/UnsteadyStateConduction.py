@@ -201,9 +201,23 @@ def q_x_for_constant_t_w(x, tau, t_0, t_w, lambda_, a):
     :param t_w: 壁面温度
     :param lambda_: 导热系数
     :param a: 热扩散系数
-    :return:
+    :return: 热流密度
     '''
     return (t_w - t_0) * lambda_ / (np.sqrt(np.pi * a * tau)) * np.exp(-x**2/(4*a*tau))
+
+
+def Q_s_for_constant_t_w(tau, t_0, t_w, lambda_, a):
+    '''
+    计算第一类边界条件（壁面温度稳定在某温度）下，经过时间tau，物体通过表面单位面积吸收的热量
+
+    :param tau: 传热时间
+    :param t_0: 初始温度
+    :param t_w: 壁面温度
+    :param lambda_: 导热系数
+    :param a: 热扩散系数
+    :return: 物体通过单位表面积吸收的热量
+    '''
+    return 2 * lambda_ * np.sqrt(tau/(np.pi*a))*(t_w - t_0)
 
 
 def t_x_for_constant_q_0(x, tau, t_0, lambda_, a, q_0):
@@ -216,7 +230,7 @@ def t_x_for_constant_q_0(x, tau, t_0, lambda_, a, q_0):
     :param lambda_: 导热系数
     :param a: 热扩散系数
     :param q_0: 壁面热流密度
-    :return:
+    :return: 指定位置x在时间为tau时的温度
     '''
     part1 = x/(2*np.sqrt(a*tau))
     part2 = 2 * q_0 * np.sqrt(a*tau/np.pi) / lambda_
@@ -236,7 +250,7 @@ def t_x_for_constant_h(x, tau, t_0, t_oo, lambda_, a, h):
     :param lambda_: 导热系数
     :param a: 热扩散系数
     :param h: 表面传热系数
-    :return:
+    :return: 指定位置x在时间为tau时的温度
     '''
     part1 = x/(2*np.sqrt(a*tau))
     part2 = h * x / lambda_ + h**2*a*tau / lambda_**2
