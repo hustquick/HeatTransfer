@@ -81,3 +81,7 @@ c_b = psi('C', 'T', T_b, 'P', sc.atm, material)
 Q_0 = c_b * m * (t_oo - t_0)
 Q = Q_0 * Q_to_Q_0
 print(f'Q = {Q:.0f} J')
+
+Fo = [Fo_1, Fo_2]
+if np.any([Fo]) <= 0.2:
+    print('Fo数不满足上述公式的要求，上述结果不可靠！')

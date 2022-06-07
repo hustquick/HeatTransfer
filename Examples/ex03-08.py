@@ -1,5 +1,6 @@
 from Functions.UnsteadyStateConduction import get_mu, \
     theta_to_theta_0_ratio
+import numpy as np
 
 shape = 'P'
 delta_1 = 0.5/2
@@ -40,3 +41,7 @@ print(f'最低温度为：{t_m:.2f} C')
 ratio_w_to_0 = ratio_w_to_0_1 * ratio_w_to_0_2 * ratio_w_to_0_3
 t = t_oo + ratio_w_to_0 * (t_0 - t_oo)
 print(f'最高温度为：{t:.2f} C')
+
+Fo = [Fo_1, Fo_2, Fo_3]
+if np.any([Fo]) <= 0.2:
+    print('Fo数不满足上述公式的要求，上述结果不可靠！')

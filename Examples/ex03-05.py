@@ -29,3 +29,6 @@ guess_values = np.ones(1)
 Fo = root(expressions, guess_values).x[0]
 tau = Fo * l_c**2 / a
 print(f'所需的时间为：{tau:.0f} s')
+
+if np.any([Fo]) <= 0.2:
+    print('Fo数不满足上述公式的要求，上述结果不可靠！')
