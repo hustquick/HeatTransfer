@@ -27,7 +27,7 @@ eta = 1
 Fo = get_Fo(tau, l_c, a)
 ratio_s_to_0 = theta_to_theta_0_ratio(mu, eta, Fo, shape)
 t_s = t_oo + (t_0 - t_oo) * ratio_s_to_0
-print(f't_s = {t_s:.2f} s')
+print(f't_s = {t_s:.0f} s')
 
 if np.any([Fo]) <= 0.2:
     print('Fo数不满足上述公式的要求，上述结果不可靠！')

@@ -100,7 +100,7 @@ def fin_tip_efficiency(H, perimeter, A_c, lambda_, h):
     :return: 肋片的效率
     '''
     m = fin_tip_m(perimeter, A_c, lambda_, h)
-    # print(m*H)
+    # print(f'mH = {m*H}')
     return np.tanh(m*H) / (m*H)
 
 
@@ -116,7 +116,7 @@ def fin_tip_R(H, perimeter, A_c, lambda_, h):
     :return: 肋片的热阻
     '''
     m = fin_tip_m(perimeter, A_c, lambda_, h)
-    # print(H)
+    # print(f'H = {H}')
     return 1 / np.sqrt(lambda_ * A_c * h * perimeter) / np.tanh(m*H)
 
 
@@ -130,8 +130,8 @@ def fin_tip_efficiency2(H, A_L, lambda_, h):
     :param h: 肋片的表面传热系数
     :return: 肋片效率
     """
-    mH = np.sqrt(2* h / (lambda_ * A_L)) * H**(3/2)
-    print(f'mH={mH}')
+    mH = np.sqrt(2 * h / (lambda_ * A_L)) * H**(3/2)
+    print(f'mH = {mH}')
     return np.tanh(mH) / mH
 
 
@@ -147,8 +147,8 @@ def fin_tip_Delta_T_ratio(H, perimeter, A_c, lambda_, h):
     :return: 肋片的顶端温差与底端温差之比
     '''
     m = fin_tip_m(perimeter, A_c, lambda_, h)
-    # print(f'm={m}')
-    # print(f'mH={m*H}')
+    # print(f'm = {m}')
+    # print(f'mH = {m*H}')
     return 1 / np.cosh(m*H)
 
 

@@ -24,7 +24,7 @@ def expressions(p):
     return xpr
 
 
-guess_values = 100000
+guess_values = 1
 tau = root(expressions, guess_values).x[0]
 print(f'圆桂体中心过余温度下降到初值一半所需要的时间为{tau:.0f} s')
 

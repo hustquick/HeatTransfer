@@ -15,4 +15,8 @@ xpr3 = q - Delta_t * A * lambda_ / l
 result = solve([xpr1, xpr2, xpr3], [lambda_1, lambda_, lambda_2])
 lambda_ = 2 * result[lambda_] / (result[lambda_1] + result[lambda_2]) * lambda_1
 print(f'lambda_ = {lambda_}')
-print('标准材料的导热系数随温度发生变化时，Delta_t1与Delta_t2不等')
+
+if Delta_t1 == Delta_t2:
+    print('标准材料的导热系数随温度发生变化时，Delta_t1与Delta_t2相等')
+else:
+    print('标准材料的导热系数随温度发生变化时，Delta_t1与Delta_t2不等')

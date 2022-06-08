@@ -13,4 +13,5 @@ efficiency = fin_tip_efficiency(H, perimeter, A_c, lambda_, h)
 # A_L = delta * H
 # efficiency2 = fin_tip_efficiency2(H, A_L, lambda_, h)
 np.set_printoptions(formatter={'float': '{:.2%}'.format})
-print(efficiency)
+for i, eta in enumerate(efficiency):
+    print(f'({i+1}) eta = {eta:.2%}')
