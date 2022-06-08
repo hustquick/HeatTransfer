@@ -34,7 +34,7 @@ def expressions(p):
 
 guess_values = np.ones(1)
 tau = root(expressions, guess_values).x[0]
-print(f'Tau = {tau:.0f} s')
+print(f'tau = {tau:.0f} s')
 Fo = get_Fo(tau, l_c, a)
 ratio_s_to_0 = theta_to_theta_0_ratio(mu, 1, Fo, shape)
 t_s = t_oo + (t_0 - t_oo) * ratio_s_to_0

@@ -33,3 +33,5 @@ def expressions(p):
 
 guess_values = [1, 1]
 lambda_0, b = root(expressions, guess_values).x
+print(f'lambda_0 = {lambda_0:.3f} W/m-K')
+print(f'b = {b:.3e} K^-1')

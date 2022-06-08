@@ -7,8 +7,8 @@ t_2 = 85
 phi = 1.82e3
 area = 0.2
 
-lmbda_ = phi * delta / (area * (t_2 - t_1))
-print(f'lmbda = {lmbda_:.2f}')
+lambda_ = phi * delta / (area * (t_2 - t_1))
+print(f'lambda = {lambda_:.2f}')
 
 # 如果已知平板中间的温度t，则可以得到lmbda的公式
 

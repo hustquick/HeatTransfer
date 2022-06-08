@@ -70,4 +70,4 @@ if Bi_1 < 0.1/3:
     ratio_m_to_0_2 = theta_to_theta_0_ratio(mu_2, 0, Fo_2, shape)
     Q_0_2 = V * rho * c * (t_0_2 - t_oo_2)
     Q_2 = (1 - ratio_m_to_0_2) * Q_0_2
-    print(f'Q_1 = {Q_2:.0f} J')
+    print(f'Q_2 = {Q_2:.0f} J')

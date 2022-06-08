@@ -38,7 +38,7 @@ def expressions(p):
 
 guess_values = np.ones(1)
 tau = root(expressions, guess_values).x[0]
-print(f'Tau = {tau:.1f} s')
+print(f'tau = {tau:.1f} s')
 
 Fo = get_Fo(tau, l_c, a)
 

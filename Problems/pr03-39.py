@@ -34,7 +34,7 @@ def expressions(p):
 
 guess_values = np.ones(1)
 tau = root(expressions, guess_values).x[0]
-print(f'Tau = {tau:.0f} s')
+print(f'tau = {tau:.0f} s')
 
 Fo = get_Fo(tau, l_c, a)
 if np.any([Fo]) <= 0.2:

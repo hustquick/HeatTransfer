@@ -51,5 +51,5 @@ def expressions(p):
 guess_value = [1e6, 1e6, T_initial - 4]
 Q_rad_total, Q_conv_total, T_final = root(expressions, guess_value).x
 
-print(f'辐射总换热量为： {Q_rad_total:.4e} J')
-print(f'对流总换热量为： {Q_conv_total:.4e} J')
+print(f'辐射总换热量为： {Q_rad_total:.0f} J')
+print(f'对流总换热量为： {Q_conv_total:.0f} J')
