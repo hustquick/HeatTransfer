@@ -27,7 +27,7 @@ eta = 0
 Fo = get_Fo(tau, l_c, a)
 ratio_m_to_0 = theta_to_theta_0_ratio(mu, eta, Fo, shape)
 t_m = t_oo + (t_0 - t_oo) * ratio_m_to_0
-ratiao_Q_m_to_0 = Q_to_Q_0_ratio(mu, Fo, shape)
+ratio_Q_m_to_0 = Q_to_Q_0_ratio(mu, Fo, shape)
 V = 4/3 * (d/2)**3
 
 # 如果卵石按照正六面体顶点及其中心布置的方式堆放，那么两层卵石球心之间的距离distance为边长为d的正四面体的高度
@@ -42,7 +42,7 @@ n = layer_number * n_layer
 V_n = n * V
 
 Q_0 = rho * c * V_n * abs(t_0 - t_oo)
-Q = ratiao_Q_m_to_0 * Q_0
+Q = ratio_Q_m_to_0 * Q_0
 
 print(f'半小时后，卵石的中心温度为:{t_m[0]:.2f} C，卵石的储热量为：{Q[0]:.0f} J')
 print(f'两小时后，卵石的中心温度为:{t_m[1]:.2f} C，卵石的储热量为：{Q[1]:.0f} J')
