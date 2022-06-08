@@ -30,13 +30,13 @@ t_m = t_oo + (t_0 - t_oo) * ratio_m_to_0
 ratiao_Q_m_to_0 = Q_to_Q_0_ratio(mu, Fo, shape)
 V = 4/3 * (d/2)**3
 
-# 如果卵石按照正四面体顶点的方式堆放，那么两层卵石球心之间的距离distance为边长为d的正四面体的高度
-distance1 = d / 2 / np.cos(np.pi / 6)
-distance = np.sqrt(d ** 2 - distance1 ** 2)
-# 单位长度的层数
+# 如果卵石按照正六面体顶点及其中心布置的方式堆放，那么两层卵石球心之间的距离distance为边长为d的正四面体的高度
+distance1 = 2*d/np.sqrt(3)  # 同层两相邻卵石之间的距离
+distance = distance1/2  # 相邻两层卵石中心平面之间的距离
+# 单位高度的层数
 layer_number = 1 / distance
 # 每层单位面积的卵石数量
-n_layer = (1/d)**2
+n_layer = (1/distance1)**2
 # 单位体积的卵石数量为
 n = layer_number * n_layer
 V_n = n * V
