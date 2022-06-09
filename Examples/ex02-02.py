@@ -1,4 +1,4 @@
-from Appendix.Appendix4_lambda_ import lambda_
+from Appendix.Appendix4_lambda_ import get_lambda_
 from scipy.optimize import root
 
 material1 = '耐火黏土砖'
@@ -19,8 +19,8 @@ lambda_3 = 0.116    # 根据附录4无法查知石棉板的导热系数，这里
 
 def expressions(p):
     t_12, t_23, q = p
-    expr1 = q - lambda_(material1, (t_in + t_12)/2) * (t_in - t_12) / delta1
-    expr2 = q - lambda_(material2, (t_12 + t_23)/2) * (t_12 - t_23) / delta2
+    expr1 = q - get_lambda_(material1, (t_in + t_12) / 2) * (t_in - t_12) / delta1
+    expr2 = q - get_lambda_(material2, (t_12 + t_23) / 2) * (t_12 - t_23) / delta2
     expr3 = q - lambda_3 * (t_23 - t_out) / delta3
     return expr1, expr2, expr3
 

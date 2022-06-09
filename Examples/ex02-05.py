@@ -1,4 +1,4 @@
-from Appendix.Appendix4_lambda_ import lambda_
+from Appendix.Appendix4_lambda_ import get_lambda_
 from scipy.optimize import root
 from Functions.SteadyStateConduction import cylindrical_wall_R
 
@@ -9,7 +9,7 @@ material = '水泥珍沪岩制品'
 Phi_l_max = 465
 
 t_m = (t + t_insu) / 2
-lambda_m = lambda_(material, t_m)
+lambda_m = get_lambda_(material, t_m)
 r1 = d / 2
 
 

@@ -38,7 +38,7 @@ b = [0.00023, 0.000215, 0.000198, 0.000105,
      ]
 
 
-def lambda_(material, t):
+def get_lambda_(material, t):
     if material in material_list:
         index = material_list.index(material)
         if t > t_max[index]:

@@ -10,4 +10,4 @@ q = delta_1/2 * Phi_dot
 t_2 = t_f + q / h
 t_1 = q * delta_2 / lambda_2 + t_2
 t_0 = t_1 + Phi_dot * (delta_1 / 2)**2 / (2*lamdba_1)
-print(f't_0 = {t_0:.2f}')
+print(f't_0 = {t_0:.2f} C')
