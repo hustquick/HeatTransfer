@@ -1,5 +1,4 @@
 import numpy as np
-import scipy.constants
 
 from Functions.UnsteadyStateConduction import t_x_for_constant_t_w, get_mu, get_Bi, get_Fo, get_a
 import matplotlib.pyplot as plt

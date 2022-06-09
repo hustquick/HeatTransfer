@@ -1,5 +1,4 @@
 from Functions.UnsteadyStateConduction import t_x_for_constant_t_w
-from scipy.constants import day
 from scipy.optimize import root, minimize
 import numpy as np
 from math import erf

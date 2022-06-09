@@ -1,5 +1,5 @@
 from CoolProp.CoolProp import PropsSI as psi
-import scipy.constants as const
+import scipy.constants as sc
 
 A_2 = 60e-4
 p_1 = 100e3
@@ -8,8 +8,8 @@ t_2 = 47
 P = 1500
 fluid = 'Air'
 
-T_1 = const.convert_temperature(t_1, 'C', 'K')
-T_2 = const.convert_temperature(t_2, 'C', 'K')
+T_1 = sc.convert_temperature(t_1, 'C', 'K')
+T_2 = sc.convert_temperature(t_2, 'C', 'K')
 h_1 = psi('H', 'T', T_1, 'P', p_1, fluid)
 h_2 = psi('H', 'T', T_2, 'P', p_1, fluid)
 m_dot = P / (h_2 - h_1)

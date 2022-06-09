@@ -22,4 +22,3 @@ guess_value = 1
 d = root(expression, guess_value).x[0]
 print(f'd = {d:.2e} m')
 print('如果考虑气流与热接点之间的辐射换热，则h增大，则V/A增大，d增大')
-

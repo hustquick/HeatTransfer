@@ -17,4 +17,3 @@ t_a2 = fsolve(lambda t_a2: h_1 * (t - t_a2) - h_2 * (t - t_a), guess_t_a2)[0]
 print(f'人体的散热量为：{Q_1:.2f} J')
 print(f'有风的日子，人体的散热量为：{Q_2:.2f} J')
 print(f'此时风冷温度为：{t_a2:.2f} C')
-

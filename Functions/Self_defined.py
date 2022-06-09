@@ -20,6 +20,12 @@ def check_Fo(Fo):
         print('Fo数不满足上述公式的要求，上述结果不可靠！')
 
 
+def find_nearest(array, value):
+    array = np.asarray(array)
+    idx = (np.abs(array - value)).argmin()
+    return idx
+
+
 if __name__ == '__main__':
     check_Fo(0.1)
     check_Fo([-0.3, 0.4])

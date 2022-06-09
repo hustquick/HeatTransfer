@@ -1,5 +1,4 @@
 import numpy as np
-import scipy.constants
 
 from Functions.UnsteadyStateConduction import theta_to_theta_0_ratio, get_a, get_mu, get_Bi, get_Fo
 import matplotlib.pyplot as plt
