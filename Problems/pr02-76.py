@@ -1,10 +1,10 @@
-from scipy.constants import day
+import scipy.constants as sc
 import numpy as np
 from Functions.SteadyStateConduction import sphere_Delta_T_with_heat_source
 import os
 
 Q = 4000  # J/kg
-time = 1 * day
+time = 1 * sc.day
 rho = 840
 lambda_ = 0.5
 h = 6

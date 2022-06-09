@@ -4,6 +4,7 @@ from Functions.UnsteadyStateConduction import theta_to_theta_0_ratio, get_a, get
 import matplotlib.pyplot as plt
 from scipy.integrate import solve_bvp
 import os
+from Functions.Self_defined import find_nearest
 
 d = 1e-3
 t_oo = 25
@@ -48,13 +49,6 @@ plt.ylabel('t(°C)')
 name = os.path.basename(__file__).split(".")[0]
 plt.savefig(f'./{name}.pdf')
 plt.show()
-
-
-def find_nearest(array, value):
-    array = np.asarray(array)
-    idx = (np.abs(array - value)).argmin()
-    return idx
-
 
 t_search = t_balance - Delta_t
 arg = find_nearest(t_plot, t_search)

@@ -1,7 +1,6 @@
 from Functions.SteadyStateConduction import fin_tip_R
 import numpy as np
 from scipy.optimize import root
-from math import ceil
 
 t_w = 70
 l_1, l_2 = 10e-2, 16e-2
@@ -27,4 +26,4 @@ def expressions(p):
 
 guess_values = 1
 number = root(expressions, guess_values).x[0]
-print(f'需要{ceil(number)}个针肋')
+print(f'需要{int(np.ceil(number))}个针肋')

@@ -5,14 +5,13 @@ from CoolProp.CoolProp import PropsSI as psi
 import scipy.constants as sc
 import matplotlib.pyplot as plt
 import os
-from scipy.constants import hour, minute
 from Functions.Self_defined import check_Fo
 
 t_0 = 25
 t_oo = 425
 shape = 'P'
 h = 6.5
-tau = 4 * hour + 50 * minute + 24
+tau = 4 * sc.hour + 50 * sc.minute + 24
 length = 0.1
 rho = 810
 c = 2550
