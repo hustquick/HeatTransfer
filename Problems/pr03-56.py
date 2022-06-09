@@ -6,6 +6,7 @@ import scipy.constants as sc
 import matplotlib.pyplot as plt
 import os
 from scipy.constants import hour, minute
+from Functions.Self_defined import check_Fo
 
 d = 0.15
 height = 0.05
@@ -48,5 +49,4 @@ print(f'tau = {tau:.0f} s')
 Fo_1 = get_Fo(tau, l_c_1, a)
 Fo_2 = get_Fo(tau, l_c_2, a)
 Fo = [Fo_1, Fo_2]
-if np.any([Fo]) <= 0.2:
-    print('Fo数不满足上述公式的要求，上述结果不可靠！')
+check_Fo(Fo)

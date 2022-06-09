@@ -7,6 +7,7 @@ import os
 from scipy.optimize import root
 from CoolProp.CoolProp import PropsSI as psi
 import scipy.constants as sc
+from Functions.Self_defined import check_Fo
 
 shape = 'S'
 T_x = 1000
@@ -41,6 +42,4 @@ tau = root(expressions, guess_values).x[0]
 print(f'tau = {tau:.1f} s')
 
 Fo = get_Fo(tau, l_c, a)
-
-if np.any([Fo]) <= 0.2:
-    print('Fo数不满足上述公式的要求，上述结果不可靠！')
+check_Fo(Fo)

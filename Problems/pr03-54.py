@@ -6,6 +6,7 @@ import scipy.constants as sc
 import matplotlib.pyplot as plt
 import os
 from scipy.constants import hour, minute
+from Functions.Self_defined import check_Fo
 
 t_0 = 25
 t_oo = 425
@@ -29,5 +30,4 @@ ratio = ratio_s_to_0**3
 t = t_oo + (t_0 - t_oo) * ratio
 print(f'T = {t:.2f} C')
 
-if np.any([Fo]) <= 0.2:
-    print('Fo数不满足上述公式的要求，上述结果不可靠！')
+check_Fo(Fo)

@@ -7,6 +7,7 @@ import os
 from scipy.optimize import root
 from CoolProp.CoolProp import PropsSI as psi
 import scipy.constants as sc
+from Functions.Self_defined import check_Fo
 
 shape = 'S'
 T_0 = 600
@@ -64,5 +65,4 @@ Fo_Am = get_Fo(tau_Am, l_c_A, a_A)
 Fo_Bm = get_Fo(tau_Bm, l_c_B, a_B)
 
 Fo = [Fo_As, Fo_Bs, Fo_Am, Fo_Bm]
-if np.any([Fo]) <= 0.2:
-    print('Fo数不满足上述公式的要求，上述结果不可靠！')
+check_Fo(Fo)

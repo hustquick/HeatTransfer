@@ -3,6 +3,7 @@ from scipy.optimize import root
 from Functions.UnsteadyStateConduction import theta_to_theta_0_ratio, get_a, get_mu, get_Bi, get_Fo
 import matplotlib.pyplot as plt
 from scipy.integrate import solve_bvp
+from Functions.Self_defined import check_Fo
 
 delta = 9e-3
 t_0 = 30
@@ -43,5 +44,4 @@ average = Delta_t / delta
 max = h * (t_oo - t_w) / lambda_
 print(f'(3) 平均温度梯度为 {average:.2f} C/m, 最大温度梯度为 {max:.2f} C/m')
 
-if np.any([Fo]) <= 0.2:
-    print('Fo数不满足上述公式的要求，上述结果不可靠！')
+check_Fo(Fo)

@@ -7,6 +7,7 @@ import os
 from scipy.optimize import root
 from CoolProp.CoolProp import PropsSI as psi
 import scipy.constants as sc
+from Functions.Self_defined import check_Fo
 
 shape = 'S'
 d = 10e-2
@@ -40,5 +41,4 @@ ratio_s_to_0 = theta_to_theta_0_ratio(mu, 1, Fo, shape)
 t_s = t_oo + (t_0 - t_oo) * ratio_s_to_0
 print(f'T_s = {t_s:.2f} C')
 
-if np.any([Fo]) <= 0.2:
-    print('Fo数不满足上述公式的要求，上述结果不可靠！')
+check_Fo(Fo)

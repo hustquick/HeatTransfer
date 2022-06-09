@@ -20,4 +20,4 @@ h_3 = psi('H', 'T', T_3, 'P', p, fluid)
 Q_2 = q_m*(h_1-h_3)
 ratio = (Q_1 - Q_2)/Q_1
 saved_energy = q_m*(h_1 - h_3) * tau
-print(f'可以节省{saved_energy:.2f}J, 约为{saved_energy/(sc.hour * sc.kilo):.2f}度电')
+print(f'可以节省{saved_energy:.2f} J, 约为{saved_energy/(sc.hour * sc.kilo):.2f}度电')

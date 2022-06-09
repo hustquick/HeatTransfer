@@ -1,6 +1,7 @@
 import numpy as np
 from scipy.optimize import root
 from Functions.UnsteadyStateConduction import theta_to_theta_0_ratio, get_a, get_mu, get_Bi, get_Fo
+from Functions.Self_defined import check_Fo
 
 d = 20e-3
 shape = 'S'
@@ -32,6 +33,5 @@ for i, tau in enumerate(tau_list):
     print(f'({i+1}) h = {h:.0f} W/m^2-K')
 
     Fo = get_Fo(tau, l_c, a)
-    if np.any([Fo]) <= 0.2:
-        print('Fo数不满足上述公式的要求，上述结果不可靠！')
+    check_Fo(Fo)
 

@@ -3,6 +3,7 @@ from scipy.optimize import root
 from Functions.UnsteadyStateConduction import theta_to_theta_0_ratio, get_a, get_mu, get_Bi, get_Fo
 import matplotlib.pyplot as plt
 from scipy.integrate import solve_bvp
+from Functions.Self_defined import check_Fo
 
 delta = 8e-3
 t_0 = -15
@@ -33,8 +34,7 @@ tau = root(expressions, guess_values, method='lm').x[0]
 print(f'tau = {tau:.0f} s')
 
 Fo = get_Fo(tau, l_c, a)
-if np.any([Fo]) <= 0.2:
-    print('Fo数不满足上述公式的要求，上述结果不可靠！')
+check_Fo(Fo)
 
 l_c_1 = delta
 
@@ -55,5 +55,4 @@ tau_1 = root(expressions, guess_values, method='lm').x[0]
 print(f'tau_1 = {tau_1:.0f} s')
 
 Fo_1 = get_Fo(tau, l_c_1, a)
-if np.any([Fo_1]) <= 0.2:
-    print('Fo数不满足上述公式的要求，上述结果不可靠！')
+check_Fo(Fo_1)

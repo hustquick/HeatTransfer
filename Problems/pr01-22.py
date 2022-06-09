@@ -16,4 +16,4 @@ R_5 = delta3 / lambda_3
 
 R = R_1 + R_2 + R_3 + R_4 + R_5
 h = 1 / R
-print(f'h = {h:.2f} K/W')
+print(f'h = {h:.2f} W/(m^2-W)')

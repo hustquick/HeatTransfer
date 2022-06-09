@@ -3,6 +3,7 @@ import scipy.constants as sc
 from CoolProp.CoolProp import PropsSI as psi
 import numpy as np
 from scipy.optimize import root
+from Functions.Self_defined import check_Fo
 
 d = 10e-2
 height = 8e-2
@@ -95,5 +96,4 @@ Q = Q_0 * Q_to_Q_0
 print(f'Q = {Q:.0f} J')
 
 Fo = [Fo_1, Fo_2]
-if np.any([Fo]) <= 0.2:
-    print('Fo数不满足上述公式的要求，上述结果不可靠！')
+check_Fo(Fo)

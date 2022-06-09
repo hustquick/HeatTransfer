@@ -3,6 +3,7 @@ from scipy.optimize import root
 from Functions.UnsteadyStateConduction import theta_to_theta_0_ratio, get_a, get_mu, get_Bi, get_Fo
 import matplotlib.pyplot as plt
 from scipy.integrate import solve_bvp
+from Functions.Self_defined import check_Fo
 
 t_0 = 1000
 t_oo = 5
@@ -23,5 +24,4 @@ t_m = t_oo + (t_0 - t_oo) * theta_to_theta_0_ratio(mu, 0, Fo, shape)
 print(f'表面温度为 {t_delta:.2f} C')
 print(f'内侧温度为 {t_m:.2f} C')
 
-if np.any([Fo]) <= 0.2:
-    print('Fo数不满足上述公式的要求，上述结果不可靠！')
+check_Fo(Fo)

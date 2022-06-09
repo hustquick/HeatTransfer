@@ -7,11 +7,11 @@ R_1 = 1 / h_1
 R_2 = 1 / h_2
 R_3 = delta / lambda_
 
-print(f'R_1 = {R_1:.2e} K/W, R_2 = {R_2:.2e} K/W, R_3 = {R_3:.2e} K/W')
+print(f'R_1 = {R_1:.2e} m^2-K/W, R_2 = {R_2:.2e} m^2-K/W, R_3 = {R_3:.2e} m^2-K/W')
 
 R = R_1 + R_2 + R_3
 h = 1 / R
-print(f'h = {h:.2f} K/W')
+print(f'h = {h:.2f} W/(m^2-K)')
 
 position = {R_1: '气侧', R_2: '热壁', R_3: '水侧'}
 max_resistance_position = position[max(position.keys())]

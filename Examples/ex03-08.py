@@ -1,6 +1,7 @@
 from Functions.UnsteadyStateConduction import get_mu, \
     theta_to_theta_0_ratio
 import numpy as np
+from Functions.Self_defined import check_Fo
 
 shape = 'P'
 delta_1 = 0.5/2
@@ -43,5 +44,4 @@ t = t_oo + ratio_w_to_0 * (t_0 - t_oo)
 print(f'最高温度为：{t:.2f} C')
 
 Fo = [Fo_1, Fo_2, Fo_3]
-if np.any([Fo]) <= 0.2:
-    print('Fo数不满足上述公式的要求，上述结果不可靠！')
+check_Fo(Fo)

@@ -6,7 +6,7 @@ t_a = 25
 Q = 1000
 
 h = Q / (A * (t - t_a))
-print(f'所需的对流传热系数为：{h:.2f} W/m^2')
+print(f'所需的对流传热系数为：{h:.2f} W/m^2-K')
 
 t_s = 30
 epsilon = 0.85

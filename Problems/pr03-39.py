@@ -3,6 +3,7 @@ from Functions.UnsteadyStateConduction import theta_to_theta_0_ratio, get_a, get
 import matplotlib.pyplot as plt
 import os
 from scipy.optimize import root
+from Functions.Self_defined import check_Fo
 
 d = 25e-3
 shape = 'C'
@@ -37,5 +38,4 @@ tau = root(expressions, guess_values).x[0]
 print(f'tau = {tau:.0f} s')
 
 Fo = get_Fo(tau, l_c, a)
-if np.any([Fo]) <= 0.2:
-    print('Fo数不满足上述公式的要求，上述结果不可靠！')
+check_Fo(Fo)

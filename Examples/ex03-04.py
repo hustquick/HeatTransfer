@@ -1,6 +1,7 @@
 from Functions.UnsteadyStateConduction import get_Bi, theta_to_theta_m_ratio, theta_to_theta_0_ratio
 import numpy as np
 from scipy.optimize import root
+from Functions.Self_defined import check_Fo
 
 delta = 100e-3
 t_oo = 1000
@@ -38,5 +39,4 @@ l_c = delta
 tau = Fo * l_c**2 / a
 print(f'所需的时间为：{tau:.0f} s')
 
-if np.any([Fo]) <= 0.2:
-    print('Fo数不满足上述公式的要求，上述结果不可靠！')
+check_Fo(Fo)

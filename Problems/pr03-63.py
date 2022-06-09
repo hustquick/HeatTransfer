@@ -6,6 +6,7 @@ import scipy.constants as sc
 import matplotlib.pyplot as plt
 import os
 from scipy.constants import hour, minute
+from Functions.Self_defined import check_Fo
 
 shape = 'S'
 d = 10e-3
@@ -38,8 +39,7 @@ guess_values = np.ones(1)
 tau_1 = root(expressions, guess_values).x[0]
 print(f'tau_1 = {tau_1:.0f} s')
 Fo_1 = get_Fo(tau_1, l_c, a)
-if Fo_1 <= 0.2:
-    print('Fo数不满足上述公式的要求，上述结果不可靠！')
+check_Fo(Fo_1)
 ratio_m_to_0_1 = theta_to_theta_0_ratio(mu_1, 0, Fo_1, shape)
 V = 4/3* np.pi * (d/2)**3
 Q_0 = V * rho * c * (t_0 - t_oo_1)
@@ -65,8 +65,7 @@ if Bi_1 < 0.1/3:
     tau_2 = root(expressions2, guess_values2).x[0]
     print(f'tau_2 = {tau_2:.0f} s')
     Fo_2 = get_Fo(tau_2, l_c, a)
-    if Fo_2 <= 0.2:
-        print('Fo数不满足上述公式的要求，上述结果不可靠！')
+    check_Fo(Fo_2)
     ratio_m_to_0_2 = theta_to_theta_0_ratio(mu_2, 0, Fo_2, shape)
     Q_0_2 = V * rho * c * (t_0_2 - t_oo_2)
     Q_2 = (1 - ratio_m_to_0_2) * Q_0_2

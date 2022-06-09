@@ -6,6 +6,7 @@ import scipy.constants as sc
 import matplotlib.pyplot as plt
 import os
 from scipy.constants import hour, minute
+from Functions.Self_defined import check_Fo
 
 shape = 'S'
 d = 60e-3
@@ -33,5 +34,4 @@ tau = root(expressions, guess_values).x[0]
 print(f'tau = {tau:.0f} s')
 
 Fo = get_Fo(tau, l_c, a)
-if np.any([Fo]) <= 0.2:
-    print('Fo数不满足上述公式的要求，上述结果不可靠！')
+check_Fo(Fo)

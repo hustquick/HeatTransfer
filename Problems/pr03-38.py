@@ -2,6 +2,7 @@ import numpy as np
 from Functions.UnsteadyStateConduction import theta_to_theta_0_ratio, get_a, get_mu, get_Bi, get_Fo
 import matplotlib.pyplot as plt
 import os
+from Functions.Self_defined import check_Fo
 
 d = 30e-3
 lambda_ = 0.3
@@ -23,5 +24,4 @@ ratio_m_to_0 = theta_to_theta_0_ratio(mu, eta, Fo, shape)
 t_0 = t_oo + (t - t_oo) / ratio_m_to_0
 print(f't_0 = {t_0:.2f} C')
 
-if np.any([Fo]) <= 0.2:
-    print('Fo数不满足上述公式的要求，上述结果不可靠！')
+check_Fo(Fo)

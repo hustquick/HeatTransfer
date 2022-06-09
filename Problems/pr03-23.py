@@ -3,6 +3,7 @@ from scipy.optimize import root
 from Functions.UnsteadyStateConduction import t_x_for_constant_h, get_a, get_mu, get_Bi, get_Fo, theta_to_theta_0_ratio
 import matplotlib.pyplot as plt
 from scipy.integrate import solve_bvp
+from Functions.Self_defined import check_Fo
 
 l_1 = 10e-2
 l_2 = 5e-2
@@ -28,5 +29,4 @@ ratio_m_to_0 = theta_to_theta_0_ratio(mu, eta, Fo, shape)
 t = t_oo + ratio_m_to_0 * (t_0 - t_oo)
 print(f't = {t:.2f} C')
 
-if np.any([Fo]) <= 0.2:
-    print('Fo数不满足上述公式的要求，上述结果不可靠！')
+check_Fo(Fo)

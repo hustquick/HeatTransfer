@@ -1,9 +1,9 @@
-import scipy.constants as const
+import scipy.constants as sc
 
 Phi_1 = 400
 Phi_2 = 800
 C = 5e5
-tau = 1 * const.hour
+tau = 1 * sc.hour
 
 Phi = Phi_2 - Phi_1
 Delta_T = Phi / C * tau
