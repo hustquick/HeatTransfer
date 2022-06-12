@@ -5,7 +5,7 @@ from Functions.SteadyStateConduction import cylindrical_wall_R
 d = 133e-3
 t = 400
 t_insu = 50
-material = '水泥珍沪岩制品'
+material = '水泥珍珠岩制品'
 Phi_l_max = 465
 
 t_m = (t + t_insu) / 2

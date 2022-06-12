@@ -1,6 +1,6 @@
 from Appendix.Appendix4_lambda_ import get_lambda_
 
-material = '水泥珍沪岩制品'
+material = '水泥珍珠岩制品'
 rho = 300
 delta = 120e-3
 t1 = 500
