@@ -12,11 +12,11 @@ def save_pdf(plt):
     plt.show()
 
 
-def check_Fo(Fo):
-    if (np.array([Fo]) <= 0).any():
+def check_Fo(*Fo):
+    if (np.array(Fo) <= 0).any():
         print('Fo数不能小于0，请检查！')
         return None
-    if (np.array([Fo]) <= 0.2).any():
+    if (np.array(Fo) <= 0.2).any():
         print('Fo数不满足上述公式的要求，上述结果不可靠！')
 
 
