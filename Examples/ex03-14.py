@@ -95,5 +95,4 @@ Q_0 = c_b * m * (t_oo - t_0)
 Q = Q_0 * Q_to_Q_0
 print(f'Q = {Q:.0f} J')
 
-Fo = [Fo_1, Fo_2]
-check_Fo(Fo)
+check_Fo(Fo_1, Fo_2)

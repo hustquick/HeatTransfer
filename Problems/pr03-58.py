@@ -38,5 +38,4 @@ t_s = t_oo + (t_0 - t_oo) * ratio_s_to_0
 Delta_t = t_m - t_s
 print(f'Delta_t = {Delta_t:.0f} C')
 
-Fo = [Fo_1, Fo_2]
-check_Fo(Fo)
+check_Fo(Fo_1, Fo_2)

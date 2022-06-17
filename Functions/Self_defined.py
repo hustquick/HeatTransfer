@@ -13,11 +13,17 @@ def save_pdf(plt):
 
 
 def check_Fo(*Fo):
-    if (np.array(Fo) <= 0).any():
-        print('Fo数不能小于0，请检查！')
-        return None
-    if (np.array(Fo) <= 0.2).any():
-        print('Fo数不满足上述公式的要求，上述结果不可靠！')
+    """
+    检查Fo是否符合要求，如果不符合要求，则打印出对应的不符合要求的Fo数的值，并给出提示信息
+
+    :param Fo: Fo的值，可以是一个或多个；如果是容器，在调用时需要加上*，实现解包
+    :return:
+    """
+    for i, Fo_v in enumerate(Fo):
+        try:
+            assert Fo_v > 0.2
+        except AssertionError:
+            print(f'第{i+1}个Fo数为{Fo_v:.2f}，不满足Fo数大于0.2的公式使用条件，上述结果不可靠！')
 
 
 def find_nearest(array, value):
@@ -28,5 +34,7 @@ def find_nearest(array, value):
 
 if __name__ == '__main__':
     check_Fo(0.1)
-    check_Fo([-0.3, 0.4])
+    check_Fo(-0.3, 0.4, 0.1, 0.6)
+    check_Fo(*[0.5, 0.1, 0.2, 0.2, 0.53, 0.01])  # 对于容器，需要对其解包
+    check_Fo(*(0.1, 0.2, 0.3, 0.4, 0.5, 0.6))
 

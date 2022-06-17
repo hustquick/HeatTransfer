@@ -43,4 +43,4 @@ name = os.path.basename(__file__).split(".")[0]
 plt.savefig(f'./{name}.pdf')
 plt.show()
 
-check_Fo(Fo)
+check_Fo(*Fo)  # 由于Fo是数组，需要对其解包

@@ -57,5 +57,4 @@ print(f'tau = {tau:.0f} s')
 Fo_1 = get_Fo(tau, l_c_1, a)
 Fo_2 = get_Fo(tau, l_c_2, a)
 Fo_3 = get_Fo(tau, l_c_3, a)
-Fo = [Fo_1, Fo_2, Fo_3]
-check_Fo(Fo)
+check_Fo(Fo_1, Fo_2, Fo_3)

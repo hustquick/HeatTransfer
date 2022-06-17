@@ -43,5 +43,4 @@ ratio_w_to_0 = ratio_w_to_0_1 * ratio_w_to_0_2 * ratio_w_to_0_3
 t = t_oo + ratio_w_to_0 * (t_0 - t_oo)
 print(f'最高温度为：{t:.2f} C')
 
-Fo = [Fo_1, Fo_2, Fo_3]
-check_Fo(Fo)
+check_Fo(Fo_1, Fo_2, Fo_3)

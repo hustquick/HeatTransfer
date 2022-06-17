@@ -64,5 +64,4 @@ Fo_Bs = get_Fo(tau_Bs, l_c_B, a_B)
 Fo_Am = get_Fo(tau_Am, l_c_A, a_A)
 Fo_Bm = get_Fo(tau_Bm, l_c_B, a_B)
 
-Fo = [Fo_As, Fo_Bs, Fo_Am, Fo_Bm]
-check_Fo(Fo)
+check_Fo(Fo_As, Fo_Bs, Fo_Am, Fo_Bm)
