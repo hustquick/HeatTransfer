@@ -44,8 +44,8 @@ x_plot = np.linspace(0, tau_oo, N)
 t_plot = result.sol(x_plot)[0]
 plt.plot(x_plot, t_plot)
 plt.grid()
-plt.xlabel('tau(s)')
-plt.ylabel('t(°C)')
+plt.xlabel(r'$\tau$/s')
+plt.ylabel('$t$/°C')
 name = os.path.basename(__file__).split(".")[0]
 plt.savefig(f'./{name}.pdf')
 plt.show()

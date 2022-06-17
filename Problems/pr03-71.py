@@ -15,9 +15,9 @@ for i, x in enumerate(x_list):
     t_list[i] = t
 
 fig, ax = plt.subplots()
-ax.plot(x_list, t_list)
-ax.set_xlabel('x (m)')
-ax.set_ylabel('t (C)')
+ax.plot(x_list*100, t_list)
+ax.set_xlabel('$x$/cm')
+ax.set_ylabel('$t$/°C')
 name = os.path.basename(__file__).split(".")[0]
 plt.savefig(f'./{name}.pdf')
 plt.show()
