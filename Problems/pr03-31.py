@@ -41,7 +41,7 @@ print(f'(2) Delta_t = {Delta_t:.2f} C')
 average = Delta_t / delta
 # 由于在壁面处热流密度最大，所以壁面处温度梯度最大
 # q = lambda_ * partial_t / partial_x = h * (t_oo - t_0)
-max = h * (t_oo - t_w) / lambda_
-print(f'(3) 平均温度梯度为 {average:.2f} C/m, 最大温度梯度为 {max:.2f} C/m')
+max_gradient = h * (t_oo - t_w) / lambda_
+print(f'(3) 平均温度梯度为 {average:.2f} C/m, 最大温度梯度为 {max_gradient:.2f} C/m')
 
 check_Fo(Fo)
