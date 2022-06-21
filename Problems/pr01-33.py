@@ -17,5 +17,5 @@ R_3 = 1 / h_out
 R = R_1 + R_2 + R_3
 A = h * w
 Q = A * (t_in - t_out) / R
-for i, ratio in enumerate(ratio_list):
-    print(f'当风速减小为原来的{ratio:.0%}时，散热量为{Q[i]:.2f} W')
+for ratio, Q_ in zip(ratio_list, Q):
+    print(f'当风速减小为原来的{ratio:.0%}时，散热量为{Q_:.2f} W')

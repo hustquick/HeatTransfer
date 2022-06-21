@@ -48,4 +48,4 @@ Q = ratio_Q_m_to_0 * Q_0
 print(f'半小时后，卵石的中心温度为:{t_m[0]:.2f} C，卵石的储热量为：{Q[0]:.0f} J')
 print(f'两小时后，卵石的中心温度为:{t_m[1]:.2f} C，卵石的储热量为：{Q[1]:.0f} J')
 
-check_Fo(*Fo)
+map(check_Fo, Fo)  # 由于Fo是容器，需要使用map函数对容器中的每个元素调用check_Fo函数

@@ -14,16 +14,16 @@ h = 290
 
 shape = 'C'
 l_c = d/2
-t_s_list = np.zeros(len(tau_list))
-t_m_list = np.zeros(len(tau_list))
-for i, tau in enumerate(tau_list):
+t_s_list = []
+t_m_list = []
+for tau in tau_list:
     Bi = get_Bi(l_c, lambda_, h)
     mu = get_mu(Bi, shape)
     Fo = get_Fo(tau, l_c, a)
     t_s = t_oo + (t_0 - t_oo) * theta_to_theta_0_ratio(mu, 1, Fo, shape)
-    t_s_list[i] = t_s
+    t_s_list.append(t_s)
     t_m = t_oo + (t_0 - t_oo) * theta_to_theta_0_ratio(mu, 0, Fo, shape)
-    t_m_list[i] = t_m
+    t_m_list.append(t_m)
     print(f'{int(tau/3600)}小时后: t_s = {t_s:.2f} C, t_m = {t_m:.2f} C')
 
 tau = np.linspace(2*3600, 5*3600, 100000)
@@ -43,4 +43,4 @@ name = os.path.basename(__file__).split(".")[0]
 plt.savefig(f'./{name}.pdf')
 plt.show()
 
-check_Fo(*Fo)  # 由于Fo是数组，需要对其解包
+map(check_Fo, Fo)  # 由于Fo是容器，需要使用map函数对容器中的每个元素调用check_Fo函数

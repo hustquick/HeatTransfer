@@ -22,8 +22,8 @@ R_3 = 1 / h_out
 R = R_1 + R_2 + R_3
 A = h * w
 Q = A * (t_in - t_out) / R
-for i, h in enumerate(h_out):
-    print(f'当传热系数为{h} W/m^2-K 时，散热量为{Q[i]:.2f} W')
+for h, Q_ in zip(h_out, Q):
+    print(f'当传热系数为{h} W/m^2-K 时，散热量为{Q_:.2f} W')
 fig, ax = plt.subplots()
 ax.plot(h_out, Q, 'o-')
 ax.set_xlabel('传热系数(W/m^2-K)')

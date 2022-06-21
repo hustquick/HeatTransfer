@@ -9,10 +9,10 @@ x_list = np.linspace(0, 80e-3, 1000)
 tau = 2 * 3600
 a = 0.89e-6
 
-t_list = np.zeros(len(x_list))
-for i, x in enumerate(x_list):
+t_list = []
+for x in x_list:
     t = t_x_for_constant_t_w(x, tau, t_0, t_w, a)
-    t_list[i] = t
+    t_list.append(t)
 
 fig, ax = plt.subplots()
 ax.plot(x_list*100, t_list)
