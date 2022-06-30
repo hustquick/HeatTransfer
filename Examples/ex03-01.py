@@ -13,7 +13,7 @@ lambda_ = 33
 l_c = d / 6
 Bi = get_Bi(l_c, lambda_, h)
 if Bi < 0.1/3:
-    print(f'可以使用集中参数法')
+    print('可以使用集中参数法')
 
     a = get_a(lambda_, rho, c)
     tau_c = get_tau_c(l_c, lambda_, a, h)

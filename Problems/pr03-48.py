@@ -25,4 +25,4 @@ def expressions(p):
 
 guess_value = np.ones(1)
 lambda_ = root(expressions, guess_value).x[0]
-print(f'lambda = {lambda_:.2f} W/m-K$')
+print(f'lambda = {lambda_:.2f} W/m-K')

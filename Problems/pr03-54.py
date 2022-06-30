@@ -27,6 +27,6 @@ Fo = get_Fo(tau, l_c, a)
 ratio_s_to_0 = theta_to_theta_0_ratio(mu, eta, Fo, shape)
 ratio = ratio_s_to_0**3
 t = t_oo + (t_0 - t_oo) * ratio
-print(f'T = {t:.2f} C')
+print(f't = {t:.2f} C')
 
 check_Fo(Fo)

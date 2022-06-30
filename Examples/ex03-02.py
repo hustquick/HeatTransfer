@@ -15,7 +15,7 @@ A = np.pi * r**2 + np.pi * d * length
 l_c = V / A
 Bi = get_Bi(l_c, lambda_, h)
 if Bi < 0.05:
-    print(f'可以使用集中参数法')
+    print('可以使用集中参数法')
     a = get_a(lambda_, rho, c)
     tau_c = get_tau_c(l_c, lambda_, a, h)
     Fo = get_Fo(tau, l_c, a)
