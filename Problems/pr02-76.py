@@ -20,8 +20,8 @@ surface_area = np.pi * d**2
 V = 4 / 3 * np.pi * (d/2)**3
 t_r = t_oo + Phi * V / (h * surface_area)
 t_0 = t_r + Delta_T
-print(f'苹果中心温度为{t_0:.2f} C')
-print(f'苹果表面温度为{t_r:.2f} C')
+print(f'苹果中心温度为{t_0:.2f}degC')
+print(f'苹果表面温度为{t_r:.2f}degC')
 
 # # 也可以用scipy的bvp工具求解
 # # 记y = t'(r)
@@ -53,5 +53,5 @@ print(f'苹果表面温度为{t_r:.2f} C')
 # name = os.path.basename(__file__).split(".")[0]
 # plt.savefig(f'./{name}.pdf')
 # plt.show()
-# print(f'苹果中心温度为{t_plot[0]:.2f} C')
-# print(f'苹果表面温度为{t_plot[-1]:.2f} C')
+# print(f'苹果中心温度为{t_plot[0]:.2f}degC')
+# print(f'苹果表面温度为{t_plot[-1]:.2f}degC')

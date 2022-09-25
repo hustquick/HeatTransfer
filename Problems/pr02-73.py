@@ -26,4 +26,4 @@ def expressions(p):
 
 guess_values = np.array([t_oo + 10])
 t = root(expressions, guess_values).x[0]
-print(f'芯片的工作温度为：{t:.2f} C')
+print(f'芯片的工作温度为：{t:.2f}degC')

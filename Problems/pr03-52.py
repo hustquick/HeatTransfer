@@ -27,7 +27,7 @@ for t_w in t_w_list:
     x = root(lambda x: t_max - t_x_for_constant_t_w(x, tau, t_0, t_w, a),
              guess_value).x[0]
     x_list.append(x)
-[print(f'当热源温度为{t_w} C, 烧伤深度为{x:.3f} m') for t_w, x in zip(t_w_list, x_list)]
+[print(f'当热源温度为{t_w} degC, 烧伤深度为{x:.3f} m') for t_w, x in zip(t_w_list, x_list)]
 
 t_w_lt = np.linspace(60, 110, 1000)
 x_lt = []

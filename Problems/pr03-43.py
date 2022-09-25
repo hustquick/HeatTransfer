@@ -28,6 +28,6 @@ eta = 1
 Fo = get_Fo(tau, l_c, a)
 ratio_s_to_0 = theta_to_theta_0_ratio(mu, eta, Fo, shape)
 t_s = t_oo + (t_0 - t_oo) * ratio_s_to_0
-print(f't_s = {t_s:.0f} C')
+print(f't_s = {t_s:.0f}degC')
 
 check_Fo(Fo)

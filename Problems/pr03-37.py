@@ -36,4 +36,4 @@ check_Fo(Fo_2)
 
 ratio_m_to_0 = ratio_m_to_0_1 * ratio_m_to_0_2
 t_m = t_oo + ratio_m_to_0 * (t_0 - t_oo)
-print(f't_m = {t_m:.2f} C')
+print(f't_m = {t_m:.2f}degC')

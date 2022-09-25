@@ -22,4 +22,4 @@ guess_value = [Q/2, Q/2, T_a + 10]
 Q_rad, Q_conv, T = root(expressions, guess_value).x
 t = sc.convert_temperature(T, 'K', 'C')
 print(f'T = {T:.2f} K')
-print(f't = {t:.2f} C')
+print(f't = {t:.2f}degC')

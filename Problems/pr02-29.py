@@ -10,4 +10,4 @@ Phi = 4
 R = spherical_wall_R(r, np.inf, lambda_)
 guess_value = t_oo + 1
 t = root(lambda t: Phi - (t - t_oo) / R, guess_value).x[0]
-print(f't = {t:.2f} C')
+print(f't = {t:.2f}degC')

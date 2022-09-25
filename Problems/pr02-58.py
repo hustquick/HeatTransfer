@@ -42,4 +42,4 @@ plt.ylabel('t(°C)')
 name = os.path.basename(__file__).split(".")[0]
 plt.savefig(f'./{name}.pdf')
 plt.show()
-print(f'最大温度为{t_plot[-1]:.2f} C')
+print(f'最大温度为{t_plot[-1]:.2f}degC')

@@ -35,4 +35,4 @@ def expressions(p):
 guess_values = [t_i+10, t_i+20, 1]
 t_2, t_4, R_total = root(expressions, guess_values).x
 t_o = t_i + q * R_total
-print(f'外边面的温度为：{t_o:.2f} C')
+print(f'外边面的温度为：{t_o:.2f}degC')

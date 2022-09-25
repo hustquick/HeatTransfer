@@ -36,6 +36,6 @@ ratio_s_to_0_2 = theta_to_theta_0_ratio(mu_2, 1, Fo_2, shape[1])
 ratio_s_to_0 = ratio_s_to_0_1 * ratio_s_to_0_2
 t_s = t_oo + (t_0 - t_oo) * ratio_s_to_0
 Delta_t = t_m - t_s
-print(f'Delta_t = {Delta_t:.0f} C')
+print(f'Delta_t = {Delta_t:.0f}degC')
 
 check_Fo(Fo_1, Fo_2)

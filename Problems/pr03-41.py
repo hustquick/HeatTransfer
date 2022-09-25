@@ -39,6 +39,6 @@ print(f'tau = {tau:.0f} s')
 Fo = get_Fo(tau, l_c, a)
 ratio_s_to_0 = theta_to_theta_0_ratio(mu, 1, Fo, shape)
 t_s = t_oo + (t_0 - t_oo) * ratio_s_to_0
-print(f'T_s = {t_s:.2f} C')
+print(f'T_s = {t_s:.2f}degC')
 
 check_Fo(Fo)

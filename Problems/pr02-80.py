@@ -31,4 +31,4 @@ def expressions(p):
 
 guess_value = [t_ground+1]
 t = root(expressions, guess_value).x[0]
-print(f'小屋内的空气平均温度为：{t:.2f} C')
+print(f'小屋内的空气平均温度为：{t:.2f}degC')

@@ -7,4 +7,4 @@ lambda_ = 1
 
 t = root(lambda t: q - lambda_ * (t - t_boiler) / delta,
          t_boiler + 10).x[0]
-print(f't = {t:.2f} C')
+print(f't = {t:.2f}degC')

@@ -24,7 +24,7 @@ for tau in tau_list:
     t_s_list.append(t_s)
     t_m = t_oo + (t_0 - t_oo) * theta_to_theta_0_ratio(mu, 0, Fo, shape)
     t_m_list.append(t_m)
-    print(f'{int(tau/3600)}小时后: t_s = {t_s:.2f} C, t_m = {t_m:.2f} C')
+    print(f'{int(tau/3600)}小时后: t_s = {t_s:.2f}degC, t_m = {t_m:.2f}degC')
 
 tau = np.linspace(2*3600, 5*3600, 100000)
 Bi = get_Bi(l_c, lambda_, h)

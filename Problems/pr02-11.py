@@ -17,7 +17,7 @@ R_total = R_1 + R_2 + R_c + R_3 + R_4
 
 q = (t_gas - t_air) / R_total
 t_alloy_max = t_air + q * (R_3 + R_4)
-print(f'合金的最高温度为 {t_alloy_max:.2f} C。')
+print(f'合金的最高温度为 {t_alloy_max:.2f}degC。')
 
 if t_alloy_max > t_max:
     print('合金不能安全地工作')

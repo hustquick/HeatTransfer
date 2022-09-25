@@ -30,5 +30,5 @@ def expressions(p):
 
 guess_values = [t_f + 20, t_f + 10]
 t_i, t_o = root(expressions, guess_values).x
-print(f'球罐的内表面温度为：{t_i:.2f} C')
-print(f'球罐的外表面温度为：{t_o:.2f} C')
+print(f'球罐的内表面温度为：{t_i:.2f}degC')
+print(f'球罐的外表面温度为：{t_o:.2f}degC')

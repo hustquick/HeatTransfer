@@ -19,7 +19,7 @@ lambda_ = 25
 
 guess_values = t_oo + 1
 t_balance = root(lambda t: h * np.pi * d * (t - t_oo) - I**2 * R_l, guess_values).x[0]
-print(f't = {t_balance:.2f} C')
+print(f't = {t_balance:.2f}degC')
 
 
 # dt_dtau = \dfrac{I^2 R_l - \pi h d (t - t_oo)}{\pi c \rho d^2 / 4}

@@ -15,5 +15,5 @@ R_2 = delta / lambda_
 R = R_1 + R_2
 t_bot = t_f + P * R
 t_top = t_f + P * R_1
-print(f't_bot = {t_bot:.2f} C')
-print(f't_top = {t_top:.2f} C')
+print(f't_bot = {t_bot:.2f}degC')
+print(f't_top = {t_top:.2f}degC')
