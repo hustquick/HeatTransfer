@@ -22,6 +22,6 @@
 2. 安装[PyCharm](https://www.jetbrains.com/pycharm/)软件。（可选，推荐使用PyCharm运行本项目中的代码）
 3. 安装第三方库。需要安装的第三方库包括：numpy, scipy, matplotlib, sympy, coolprop。第三方库的安装方法，可以利用pip或者conda等工具进行安装，在命令行工具（对于Windows系统，可以通过**开始**-->**Windows系统**-->**命令提示符**打开）中输入`pip install numpy scipy matplotlib sympy coolprop`或者`conda install numpy scipy matplotlib sympy coolprop`并回车，等待安装完成即可。也可以利用PyCharm的**Python Packages**包管理器安装这些第三方包。
 4. 下载本项目的所有文件到本地计算机。求解特定题目，可以直接运行该题目的py文件。
-5. 也可以运行test文件夹下的[test_examples.py](https://gitee.com/hustquick/heat-transfer/blob/master/test/test_examples.py)文件来求解所有例题，运行test文件夹下的[test_problems.py](https://gitee.com/hustquick/heat-transfer/blob/master/test/test_problems.py)文件来求解所有习题。
+5. 也可以运行Batch_test文件夹下的[test_examples.py](https://gitee.com/hustquick/heat-transfer/blob/master/test/test_examples.py)文件来求解所有例题，运行Batch_test文件夹下的[test_problems.py](https://gitee.com/hustquick/heat-transfer/blob/master/test/test_problems.py)文件来求解所有习题。
 6. 也可以查看jupyter文件夹下的各章节的解题代码和结果。
 7. 对于Windows系统，如果下载的文件无法正常运行，则需要将下载下来的HeatTransfer文件夹路径添加至**系统路径**(**path**)。
