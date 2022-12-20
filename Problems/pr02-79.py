@@ -3,7 +3,7 @@ import numpy as np
 from scipy.integrate import solve_bvp
 import matplotlib.pyplot as plt
 import os
-from Functions.Self_defined import find_nearest
+from Functions.Self_defined import find_nearest, save_pdf
 
 h_i, h_o = 2, 10
 d_i, d_o = 25e-3, 30e-3
@@ -51,11 +51,10 @@ x_plot = np.linspace(0, H_p, N)
 t_plot = result.sol(x_plot)[0]
 plt.plot(x_plot, t_plot)
 plt.grid()
-plt.xlabel('x(m)')
-plt.ylabel('t(°C)')
+plt.xlabel('$x(\mathrm{m})$')
+plt.ylabel('$t(\mathrm{^\circ C})$')
 name = os.path.basename(__file__).split(".")[0]
-plt.savefig(f'./{name}.pdf')
-plt.show()
+save_pdf(name, plt)
 
 arg = find_nearest(t_plot, t_search)
 print(f'温度为{t_search}°C的位置离手柄与锅体相接部分{x_plot[arg]:.3f} m')

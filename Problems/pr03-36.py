@@ -2,7 +2,7 @@ import numpy as np
 from Functions.UnsteadyStateConduction import theta_to_theta_0_ratio, get_a, get_mu, get_Bi, get_Fo
 import matplotlib.pyplot as plt
 import os
-from Functions.Self_defined import check_Fo
+from Functions.Self_defined import check_Fo, save_pdf
 
 t_0 = 30
 t_oo = 1400
@@ -37,10 +37,9 @@ fig, ax = plt.subplots()
 ax.plot(tau, t_s, label='$t_s$')
 ax.plot(tau, t_m, label='$t_m$')
 ax.set_xlabel(r'$\tau$/s')
-ax.set_ylabel('$t$/°C')
+ax.set_ylabel('$t/\mathrm{^\circ C}$')
 plt.legend()
 name = os.path.basename(__file__).split(".")[0]
-plt.savefig(f'./{name}.pdf')
-plt.show()
+save_pdf(name, plt)
 
 map(check_Fo, Fo)  # 由于Fo是容器，需要使用map函数对容器中的每个元素调用check_Fo函数

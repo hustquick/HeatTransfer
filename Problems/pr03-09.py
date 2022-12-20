@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import os
+from Functions.Self_defined import save_pdf
 
 c = 2.094e3
 t_0 = 20
@@ -18,6 +19,4 @@ ax.set_xlabel(r'$\tau$')
 ax.set_ylabel(r'$\theta$')
 ax.legend()
 name = os.path.basename(__file__).split(".")[0]
-plt.savefig(f'./{name}.pdf')
-plt.show()
-
+save_pdf(name, plt)

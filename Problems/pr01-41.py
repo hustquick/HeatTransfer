@@ -2,9 +2,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 import os
 
-plt.rcParams['font.sans-serif'] = 'Arial Unicode MS'
-plt.rcParams['axes.unicode_minus'] = False
-
 delta = 200e-3
 h = 3
 w = 6
@@ -26,9 +23,8 @@ for h, Q_ in zip(h_out, Q):
     print(f'当传热系数为{h} W/m^2-K 时，散热量为{Q_:.2f} W')
 fig, ax = plt.subplots()
 ax.plot(h_out, Q, 'o-')
-ax.set_xlabel('传热系数(W/m^2-K)')
-ax.set_ylabel('散热量(W)')
+ax.set_xlabel('传热系数($\mathrm{W/m^2 \cdot K}$)')
+ax.set_ylabel('散热量($\mathrm{W}$)')
 ax.set_title('散热量与传热系数的关系')
 name = os.path.basename(__file__).split(".")[0]
-plt.savefig(f'./{name}.pdf')
-plt.show()
+save_pdf(name, plt)

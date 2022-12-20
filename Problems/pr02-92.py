@@ -2,9 +2,7 @@ import numpy as np
 from Functions.SteadyStateConduction import fin_tip_efficiency, overall_fin_surface_efficiency
 import matplotlib.pyplot as plt
 import os
-
-plt.rcParams['font.sans-serif'] = 'Arial Unicode MS'
-plt.rcParams['axes.unicode_minus'] = False
+from Functions.Self_defined import save_pdf
 
 d = 7.5e-3
 distance = 10e-3
@@ -39,9 +37,8 @@ Phi = (t_w - t_f) / R_overall
 
 fig, ax = plt.subplots()
 ax.plot(u, Phi)
-ax.set_xlabel('空气流速（m/s）')
-ax.set_ylabel('散热量（W）')
+ax.set_xlabel('空气流速（$\mathrm{m/s}$）')
+ax.set_ylabel('散热量（$\mathrm{W}$）')
 ax.set_title('散热量随空气流速的变化')
 name = os.path.basename(__file__).split(".")[0]
-plt.savefig(f'./{name}.pdf')
-plt.show()
+save_pdf(name, plt)

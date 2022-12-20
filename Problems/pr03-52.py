@@ -5,6 +5,7 @@ from CoolProp.CoolProp import PropsSI as psi
 import scipy.constants as sc
 import matplotlib.pyplot as plt
 import os
+from Functions.Self_defined import save_pdf
 
 t_max = 48
 tau_s = 10
@@ -38,8 +39,7 @@ for t_w in t_w_lt:
 
 fig, ax = plt.subplots()
 ax.plot(t_w_lt, np.array(x_lt)*1000)
-ax.set_xlabel('$t_w$/°C')
-ax.set_ylabel('$x$/ mm')
+ax.set_xlabel('$t_w/\mathrm{^\circ C}$')
+ax.set_ylabel(r'$x$/mm')
 name = os.path.basename(__file__).split(".")[0]
-plt.savefig(f'./{name}.pdf')
-plt.show()
+save_pdf(name, plt)

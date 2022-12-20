@@ -2,12 +2,10 @@ import numpy as np
 import os
 import matplotlib.pyplot as plt
 
-plt.rcParams['font.sans-serif'] = 'Arial Unicode MS'
-plt.rcParams['axes.unicode_minus'] = False
-
-
-def save_pdf(plt):
-    name = os.path.basename(__file__).split(".")[0]
+def save_pdf(name, plt):
+    """
+    保存pdf文件
+    """
     plt.savefig(f'./{name}.pdf')
     plt.show()
 

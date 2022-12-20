@@ -2,6 +2,7 @@ import numpy as np
 from scipy.special import iv
 import matplotlib.pyplot as plt
 import os
+from Functions.Self_defined import save_pdf
 
 delta = 0.0001
 x = np.linspace(delta, 2.5, 1000)
@@ -15,6 +16,5 @@ ax.plot(x, eta)
 ax.set_xlabel('$x$')
 ax.set_ylabel('$\eta(x)$')
 name = os.path.basename(__file__).split(".")[0]
-plt.savefig(f'./{name}.pdf')
-plt.show()
+save_pdf(name, plt)
 

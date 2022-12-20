@@ -25,3 +25,4 @@
 5. 也可以运行Batch_test文件夹下的[test_examples.py](https://gitee.com/hustquick/heat-transfer/blob/master/test/test_examples.py)文件来求解所有例题，运行Batch_test文件夹下的[test_problems.py](https://gitee.com/hustquick/heat-transfer/blob/master/test/test_problems.py)文件来求解所有习题。
 6. 也可以查看jupyter文件夹下的各章节的解题代码和结果。
 7. 对于Windows系统，如果下载的文件无法正常运行（一般不会出现），则需要将下载下来的HeatTransfer文件夹路径添加至**系统路径**(**path**)。
+8. 如果画出的图形里的汉字显示乱码，参考以下[设置](https://gitee.com/hustquick/heat-transfer/解决matplotlib中文乱码问题.md)。
