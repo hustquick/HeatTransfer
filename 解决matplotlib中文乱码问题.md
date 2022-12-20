@@ -29,10 +29,9 @@
    st = 'cp SimHei.ttf ' + path
    os.system(st)
    ```
- 
-    b. 在网站[xiazaiziti](http://www.xiazaiziti.com/210356.html)上下载 SimHei.ttf 文件，并将其移动到 copy_SimHei.py 所在文件夹；
-      
-    c. 运行 copy_SimHei.py 文件。
+   b. 在网站[xiazaiziti](http://www.xiazaiziti.com/210356.html)上下载 SimHei.ttf 文件，并将其移动到 copy_SimHei.py 所在文件夹； 
+   
+   c. 运行 copy_SimHei.py 文件。
    
 ## 3. 重新加载字体
 
@@ -96,9 +95,9 @@
    os.system(st)
    ```
  
-    b. 在网站[xiazaiziti](http://www.xiazaiziti.com/210356.html)上下载 SimHei.ttf 文件，并将其移动到 copy_SimHei.py 所在文件夹；
+   b. 在网站[xiazaiziti](http://www.xiazaiziti.com/210356.html)上下载 SimHei.ttf 文件，并将其移动到 copy_SimHei.py 所在文件夹；
       
-    c. 运行 copy_SimHei.py 文件。
+   c. 运行 copy_SimHei.py 文件。
 
 ## 3. 测试
 
