@@ -2,6 +2,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 import os
 
+import sys
+sys.path.append("..")
+from Functions.Self_defined import save_pdf
+
 delta = 200e-3
 h = 3
 w = 6

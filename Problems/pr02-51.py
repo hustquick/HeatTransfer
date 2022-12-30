@@ -1,5 +1,9 @@
-from Functions.SteadyStateConduction import fin_tip_R
 import numpy as np
+
+import sys
+sys.path.append("..")
+from Functions.SteadyStateConduction import fin_tip_R
+
 
 material = 'Al'
 t_w = 260

@@ -1,3 +1,5 @@
+import sys
+sys.path.append("..")
 from Functions.SteadyStateConduction import fin_tip_efficiency
 import numpy as np
 from scipy.integrate import solve_bvp

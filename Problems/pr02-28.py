@@ -1,6 +1,10 @@
 import numpy as np
-from Functions.SteadyStateConduction import spherical_wall_R
 from scipy.optimize import root
+
+import sys
+sys.path.append("..")
+from Functions.SteadyStateConduction import spherical_wall_R
+
 
 d = 1.22
 delta = 0.45

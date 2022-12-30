@@ -1,5 +1,9 @@
-from Functions.SteadyStateConduction import cylindrical_wall_R
 import numpy as np
+
+import sys
+sys.path.append("..")
+from Functions.SteadyStateConduction import cylindrical_wall_R
+
 
 d = 30e-3
 t = 100

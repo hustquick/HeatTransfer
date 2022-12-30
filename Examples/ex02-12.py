@@ -1,3 +1,5 @@
+import sys
+sys.path.append("..")
 from Appendix.Appendix4_lambda_ import get_lambda_
 from CoolProp.CoolProp import PropsSI as psi
 import scipy.constants as sc

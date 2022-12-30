@@ -1,3 +1,5 @@
+import sys
+sys.path.append("..")
 from Functions.UnsteadyStateConduction import t_x_for_constant_q_0, get_mu, theta_to_theta_0_ratio, Q_to_Q_0_ratio
 import scipy.constants as sc
 from CoolProp.CoolProp import PropsSI as psi

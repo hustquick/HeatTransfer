@@ -1,4 +1,6 @@
 import numpy as np
+import sys
+sys.path.append("..")
 from Functions.SteadyStateConduction import fin_tip_efficiency2
 
 Diameter = 60e-3

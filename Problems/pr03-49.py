@@ -1,4 +1,6 @@
 import numpy as np
+import sys
+sys.path.append("..")
 from Functions.UnsteadyStateConduction import q_x_for_constant_t_w, get_mu, get_Bi, get_Fo, get_a
 
 # 人对温度的感知由热流密度决定，比较二者的热流密度即可

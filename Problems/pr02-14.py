@@ -1,6 +1,9 @@
+from scipy.optimize import root
+import sys
+sys.path.append("..")
 from Functions.SteadyStateConduction import cylindrical_wall_R
 from Appendix.Appendix4_lambda_ import get_lambda_
-from scipy.optimize import root
+
 
 d = 100e-3
 density = 20

@@ -1,5 +1,7 @@
 # 可看做两个断面绝热的等截面弯肋的叠加
 import numpy as np
+import sys
+sys.path.append("..")
 from Functions.SteadyStateConduction import fin_tip_R, fin_tip_Delta_T_ratio, fin_tip_efficiency
 
 d = 25e-3

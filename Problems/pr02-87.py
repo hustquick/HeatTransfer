@@ -1,3 +1,5 @@
+import sys
+sys.path.append("..")
 from Functions.SteadyStateConduction import fin_tip_R
 import numpy as np
 from scipy.optimize import root

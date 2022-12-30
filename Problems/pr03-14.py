@@ -1,4 +1,6 @@
 import numpy as np
+import sys
+sys.path.append("..")
 from Functions.UnsteadyStateConduction import get_Bi, get_tau_c, get_a
 
 carbon_percentage = 0.5e-2

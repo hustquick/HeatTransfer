@@ -1,4 +1,7 @@
 import numpy as np
+
+import sys
+sys.path.append("..")
 from Functions.SteadyStateConduction import cylindrical_wall_R
 
 t_gas = 1000

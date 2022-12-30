@@ -1,3 +1,5 @@
+import sys
+sys.path.append("..")
 from Appendix.Appendix4_lambda_ import get_lambda_
 from scipy.optimize import root
 from Functions.SteadyStateConduction import cylindrical_wall_R

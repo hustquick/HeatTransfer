@@ -1,3 +1,5 @@
+import sys
+sys.path.append("..")
 from Functions.UnsteadyStateConduction import t_x_for_constant_q_0
 
 q_0 = 2e4

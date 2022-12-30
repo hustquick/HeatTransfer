@@ -1,4 +1,6 @@
 import numpy as np
+import sys
+sys.path.append("..")
 from Functions.SteadyStateConduction import fin_tip_efficiency, overall_fin_surface_efficiency
 import matplotlib.pyplot as plt
 import os

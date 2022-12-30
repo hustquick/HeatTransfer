@@ -1,3 +1,5 @@
+import sys
+sys.path.append("..")
 from Functions.UnsteadyStateConduction import get_a, t_x_for_constant_t_w
 from scipy.optimize import root
 import numpy as np

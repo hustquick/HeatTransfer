@@ -1,5 +1,7 @@
 import numpy as np
 from scipy.optimize import root
+import sys
+sys.path.append("..")
 from Functions.UnsteadyStateConduction import theta_to_theta_0_ratio, get_a, get_mu, get_Bi, get_Fo
 from Functions.Self_defined import check_Fo
 

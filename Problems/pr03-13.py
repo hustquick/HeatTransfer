@@ -1,4 +1,6 @@
 import numpy as np
+import sys
+sys.path.append("..")
 from Functions.UnsteadyStateConduction import get_Bi, get_tau_c
 
 delta = 20e-3

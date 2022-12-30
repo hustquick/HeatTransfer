@@ -1,4 +1,6 @@
 import numpy as np
+import sys
+sys.path.append("..")
 from Functions.SteadyStateConduction import fin_tip_efficiency2, cylindrical_wall_R
 from scipy.optimize import root
 

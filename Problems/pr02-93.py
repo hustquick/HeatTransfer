@@ -2,6 +2,8 @@ import numpy as np
 from scipy.special import iv
 import matplotlib.pyplot as plt
 import os
+import sys
+sys.path.append("..")
 from Functions.Self_defined import save_pdf
 
 delta = 0.0001

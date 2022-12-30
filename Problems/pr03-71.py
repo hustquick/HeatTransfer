@@ -1,5 +1,7 @@
 import numpy as np
 import os
+import sys
+sys.path.append("..")
 from Functions.UnsteadyStateConduction import t_x_for_constant_t_w
 import matplotlib.pyplot as plt
 

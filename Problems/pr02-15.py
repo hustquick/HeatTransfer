@@ -1,7 +1,10 @@
-from Functions.SteadyStateConduction import cylindrical_wall_R
-from Appendix import Appendix4_lambda_ as ap4
 import sympy as sp
 import numpy as np
+
+import sys
+sys.path.append("..")
+from Functions.SteadyStateConduction import cylindrical_wall_R
+from Appendix import Appendix4_lambda_ as ap4
 
 d_1 = 50e-3
 delta_1 = 40e-3

@@ -1,6 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import os
+import sys
+sys.path.append("..")
 from Functions.Self_defined import save_pdf
 
 c = 2.094e3

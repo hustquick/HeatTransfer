@@ -1,3 +1,5 @@
+import sys
+sys.path.append("..")
 from Functions.SteadyStateConduction import cylinder_Delta_T_with_heat_source
 
 r = 2e-2

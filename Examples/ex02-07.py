@@ -1,3 +1,5 @@
+import sys
+sys.path.append("..")
 from Functions.SteadyStateConduction import fin_tip_efficiency2
 import numpy as np
 
