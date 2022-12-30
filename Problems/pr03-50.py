@@ -1,3 +1,5 @@
+import sys
+sys.path.append("..")
 from Functions.UnsteadyStateConduction import get_a, Q_s_for_constant_t_w
 
 t_0 = 50

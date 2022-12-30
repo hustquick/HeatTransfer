@@ -1,3 +1,5 @@
+import sys
+sys.path.append("..")
 from Functions.UnsteadyStateConduction import get_Bi, theta_to_theta_m_ratio, theta_to_theta_0_ratio
 import numpy as np
 from scipy.optimize import root

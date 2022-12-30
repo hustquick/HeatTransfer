@@ -1,3 +1,5 @@
+import sys
+sys.path.append("..")
 from Functions.UnsteadyStateConduction import get_a, get_tau_c, get_Bi, get_Fo
 import numpy as np
 

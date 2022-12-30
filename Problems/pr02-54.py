@@ -1,3 +1,5 @@
+import sys
+sys.path.append("..")
 from Functions.SteadyStateConduction import fin_tip_Delta_T_ratio
 import numpy as np
 

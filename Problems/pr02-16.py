@@ -1,5 +1,7 @@
 import numpy as np
 
+import sys
+sys.path.append("..")
 from Functions.SteadyStateConduction import cylindrical_wall_R
 
 d = 3e-3

@@ -1,6 +1,10 @@
 import numpy as np
-from Functions.SteadyStateConduction import spherical_wall_R
 from scipy.optimize import root
+
+import sys
+sys.path.append("..")
+from Functions.SteadyStateConduction import spherical_wall_R
+
 
 r = 0.1e-3
 t_oo = 25

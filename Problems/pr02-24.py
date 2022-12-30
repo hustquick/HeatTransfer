@@ -1,4 +1,7 @@
 from scipy.optimize import root
+
+import sys
+sys.path.append("..")
 from Functions.SteadyStateConduction import spherical_wall_R
 
 d_i = 0.15

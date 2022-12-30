@@ -1,3 +1,5 @@
+import sys
+sys.path.append("..")
 from Functions.SteadyStateConduction import fin_tip_Delta_T_ratio, fin_tip_efficiency
 
 H = 9e-2

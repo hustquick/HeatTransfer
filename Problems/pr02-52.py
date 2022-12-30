@@ -1,5 +1,9 @@
-from Functions.SteadyStateConduction import fin_tip_efficiency2
 import numpy as np
+
+import sys
+sys.path.append("..")
+from Functions.SteadyStateConduction import fin_tip_efficiency2
+
 
 material = 'Al'
 d = 25e-3

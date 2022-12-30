@@ -1,4 +1,6 @@
 import numpy as np
+import sys
+sys.path.append("..")
 from Functions.SteadyStateConduction import cylindrical_wall_R, fin_tip_R, fin_tip_efficiency
 
 d_1 = 4e-3

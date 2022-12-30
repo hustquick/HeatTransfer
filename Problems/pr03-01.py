@@ -1,6 +1,8 @@
 import numpy as np
 from scipy.optimize import root
 import matplotlib.pyplot as plt
+import sys
+sys.path.append("..")
 from Functions.UnsteadyStateConduction import t_x_for_constant_t_w
 
 delta = 30e-3

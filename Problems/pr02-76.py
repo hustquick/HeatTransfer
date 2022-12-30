@@ -1,5 +1,7 @@
 import scipy.constants as sc
 import numpy as np
+import sys
+sys.path.append("..")
 from Functions.SteadyStateConduction import sphere_Delta_T_with_heat_source
 import os
 

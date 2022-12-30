@@ -1,5 +1,9 @@
-from Functions.SteadyStateConduction import fin_tip_efficiency
 import numpy as np
+
+import sys
+sys.path.append("..")
+from Functions.SteadyStateConduction import fin_tip_efficiency
+
 
 lambda_ = np.array([208, 41.5])
 h = np.array([284, 511])

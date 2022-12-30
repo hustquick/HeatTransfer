@@ -1,6 +1,7 @@
 import numpy as np
 import scipy.constants
-
+import sys
+sys.path.append("..")
 from Functions.UnsteadyStateConduction import theta_to_theta_0_ratio, Q_to_Q_0_ratio, get_mu, get_Bi, get_Fo
 import matplotlib.pyplot as plt
 import os

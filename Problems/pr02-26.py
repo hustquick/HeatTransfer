@@ -1,5 +1,9 @@
-from Functions.SteadyStateConduction import spherical_wall_R, cylindrical_wall_R
 import scipy.constants as sc
+
+import sys
+sys.path.append("..")
+from Functions.SteadyStateConduction import spherical_wall_R, cylindrical_wall_R
+
 
 delta = 20e-2
 lambda_ = 1.5

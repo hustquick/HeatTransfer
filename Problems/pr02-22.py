@@ -1,5 +1,9 @@
-from Functions.SteadyStateConduction import spherical_wall_R
 import scipy.constants as sc
+
+import sys
+sys.path.append("..")
+from Functions.SteadyStateConduction import spherical_wall_R
+
 
 d = 300e-3
 delta = 30e-3

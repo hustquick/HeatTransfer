@@ -1,3 +1,5 @@
+import sys
+sys.path.append("..")
 from Functions.SteadyStateConduction import cylindrical_wall_R
 
 t_s2 = 25

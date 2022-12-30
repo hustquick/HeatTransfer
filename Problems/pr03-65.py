@@ -1,4 +1,3 @@
-from Functions.UnsteadyStateConduction import get_a, get_mu, get_Fo, get_Bi, t_x_for_constant_t_w, theta_to_theta_0_ratio
 from scipy.optimize import root
 import numpy as np
 from CoolProp.CoolProp import PropsSI as psi
@@ -6,6 +5,10 @@ import scipy.constants as sc
 import matplotlib.pyplot as plt
 import os
 from scipy.constants import hour, minute
+
+import sys
+sys.path.append("..")
+from Functions.UnsteadyStateConduction import get_a, get_mu, get_Fo, get_Bi, t_x_for_constant_t_w, theta_to_theta_0_ratio
 from Functions.Self_defined import check_Fo
 
 shape = 'S'

@@ -1,4 +1,7 @@
 import numpy as np
+
+import sys
+sys.path.append("..")
 from Functions.SteadyStateConduction import spherical_wall_R
 
 r_1 = 10e-3

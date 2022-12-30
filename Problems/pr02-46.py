@@ -1,3 +1,5 @@
+import sys
+sys.path.append("..")
 from Functions.SteadyStateConduction import plate_wall_Delta_T_with_heat_source
 
 # 绝热表面可以看做对称面

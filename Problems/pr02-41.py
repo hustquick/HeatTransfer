@@ -1,6 +1,10 @@
-from Functions.SteadyStateConduction import cylinder_Delta_T_with_heat_source, cylindrical_wall_R
 import numpy as np
 from scipy.optimize import root
+
+import sys
+sys.path.append("..")
+from Functions.SteadyStateConduction import cylinder_Delta_T_with_heat_source, cylindrical_wall_R
+
 
 t_max = 1600
 t_water = 110
