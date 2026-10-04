@@ -5,7 +5,7 @@ t = np.zeros(3)
 eps = 5e-5
 
 # 求解：高斯-赛德尔法，每求出一个温度就立即用于后面的方程。
-print('迭代次数       t1          t2          t3')
+print('迭代次数      t1          t2          t3')
 print(f'{0:4d}', *[f'{v:11.5f}' for v in t])
 for k in range(1, 101):
     t_old = t.copy()
