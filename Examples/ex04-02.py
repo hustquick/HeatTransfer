@@ -7,7 +7,7 @@ t = np.array([300., 300., 200., 200.])
 eps = 2e-4
 
 # 求解：等步长、无内热源，各内节点温度等于四邻点温度平均值。
-print('迭代次数       t1          t2          t3          t4 / °C')
+print('迭代次数      t1          t2          t3          t4 / °C')
 print(f'{0:4d}', *[f'{v:11.5f}' for v in t])
 for k in range(1, 101):
     t_old = t.copy()
