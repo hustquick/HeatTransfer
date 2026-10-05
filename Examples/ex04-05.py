@@ -1,62 +1,71 @@
 import numpy as np
-from scipy.sparse import lil_matrix
-from scipy.sparse.linalg import spsolve
 import matplotlib.pyplot as plt
 
-# 已知条件：计算半厚度δ区域，肋根定温，底部对称绝热。
-# 上表面及肋端对流；h、λ、δ、H分别为换热系数、导热系数、半厚度、肋高。
+# 教材假设栏勘误：本例为二维稳态导热；应为肋片底端（y=0对称面）绝热，
+# 不是顶端（x=H肋端）绝热；顶端与上表面均对流换热。
+# 教材表4-4勘误：m沿肋根至肋端，n沿对称面至上表面；Bi_Δ=hΔ/λ。
+# 3b（m=M，n=2…N−1）：
+# Θ[M,n]=(2Θ[M−1,n]+Θ[M,n+1]+Θ[M,n−1])/(4+2Bi_Δ)。
+# 左邻点系数应为2；控制体左侧导热系数为λ，上下各为λ/2。
+# 4b（右下角）：左端应为Θ[M,1]，不是Θ[M,N]；
+# Θ[M,1]=(Θ[M−1,1]+Θ[M,2])/(2+Bi_Δ)，不是分母2+2Bi_Δ。
+# 此角点底部绝热，仅右侧对流；两个导热系数为λ/2，对流系数为hΔ/2。
+# 分母2+2Bi_Δ适用于有两个对流面的右上角4a。
+
+# 已知条件：h、λ、半厚度δ、肋高H；肋根Θ=1。
+# 底部对称绝热，上表面与肋端对流；Δx=Δy。
 conditions = [(50,100,0.02,0.04), (400,8,0.02,0.08)]
-
-# 求解：Θ=(t-t_f)/(t_0-t_f)，肋根 Θ=1，其他外边界对流。
+dx = 0.005
+eps = 1e-9
 summary = []
-fig, axes = plt.subplots(1, 2, figsize=(11, 4))
-for case, (h,lambda_,delta,H) in enumerate(conditions, start=1):
-    dx = 0.005  # Δx=Δy
-    nx = round(H/dx)+1
-    ny = round(delta/dx)+1
-    ids = np.arange(nx*ny).reshape(ny,nx)
-    A = lil_matrix((nx*ny,nx*ny))
-    b = np.zeros(nx*ny)
-    for j in range(ny):
-        for i in range(nx):
-            p = ids[j,i]
-            if i==0:
-                A[p,p]=1
-                b[p]=1
-                continue
-            # 边界节点控制体是半单元，角点是四分之一单元。
-            width = dx*(0.5 if i==nx-1 else 1)
-            height = dx*(0.5 if j in [0,ny-1] else 1)
-            for dj,di in [(0,-1),(0,1),(-1,0),(1,0)]:
-                jj,ii=j+dj,i+di
-                if not (0<=jj<ny and 0<=ii<nx):
-                    if ii==nx or jj==ny:
-                        A[p,p] += h*(height if di else width)
-                    continue
-                G=lambda_*(height if di else width)/dx
-                A[p,p]+=G
-                A[p,ids[jj,ii]]-=G
-    theta=spsolve(A.tocsr(),b).reshape(ny,nx)
-    w_x=np.r_[0.5,np.ones(nx-2),0.5]
-    w_y=np.r_[0.5,np.ones(ny-2),0.5]
-    q_half=h*dx*(np.dot(w_x,theta[-1])+np.dot(w_y,theta[:,-1]))
-    eta=q_half/(h*(H+delta))
-    # 一维计算：修正肋高的一维近似，H_c=H+δ。
-    m=np.sqrt(h/(lambda_*delta))
-    eta_1d=np.tanh(m*(H+delta))/(m*(H+delta))
+fig, axes = plt.subplots(1,2,figsize=(11,4))
 
+# 求解：Gauss-Seidel，每次更新后立即使用新值。
+for case,(h,lambda_,delta,H) in enumerate(conditions,start=1):
+    M,N = round(H/dx)+1,round(delta/dx)+1
+    Bi_grid = h*dx/lambda_
+    theta = np.ones((N,M))
+    for iteration in range(1,100001):
+        old = theta.copy()
+        # 底部绝热（1）与内部节点（2）。
+        for m in range(1,M-1):
+            theta[0,m] = (theta[0,m-1]+theta[0,m+1]+2*theta[1,m])/4
+        for n in range(1,N-1):
+            for m in range(1,M-1):
+                theta[n,m] = (theta[n-1,m]+theta[n+1,m]+theta[n,m-1]+theta[n,m+1])/4
+        # 上表面对流（3a）与肋端对流（3b）。
+        for m in range(1,M-1):
+            theta[-1,m] = (theta[-1,m-1]+theta[-1,m+1]+2*theta[-2,m])/(4+2*Bi_grid)
+        for n in range(1,N-1):
+            theta[n,-1] = (theta[n-1,-1]+theta[n+1,-1]+2*theta[n,-2])/(4+2*Bi_grid)
+        # 右上角两个对流面（4a），右下角一个对流面（4b）。
+        theta[-1,-1] = (theta[-1,-2]+theta[-2,-1])/(2+2*Bi_grid)
+        theta[0,-1] = (theta[0,-2]+theta[1,-1])/(2+Bi_grid)
+        if np.max(np.abs(theta-old)) < eps:
+            break
+    else:
+        raise RuntimeError('迭代未收敛')
+
+    # 散热边界梯形积分，右上角计入两个半段。
+    total = 0.5*(theta[-1,0]+theta[0,-1])
+    total += np.sum(theta[-1,1:])+np.sum(theta[1:-1,-1])
+    eta = total/(M+N-2)
+    m_fin = np.sqrt(h/(lambda_*delta))
+    eta_1d = np.tanh(m_fin*(H+delta))/(m_fin*(H+delta))
     Bi = h*delta/lambda_
-    summary.append((case, nx, ny, Bi, eta, eta_1d, abs(eta_1d-eta)/eta*100))
-    x = np.linspace(0, H, nx)
-    y = np.linspace(0, delta, ny)
-    contours = axes[case-1].contour(x, y, theta, levels=8)
-    axes[case-1].clabel(contours, fmt='%.2f')
-    axes[case-1].set(title=f'Case {case}: Bi = {Bi:g}', xlabel='x / m', ylabel='y / m')
+    deviation = abs(eta_1d-eta)/eta*100
+    summary.append((case,M,N,Bi,eta,eta_1d,deviation))
+    print(f'工况{case}：迭代{iteration}次')
+    contours = axes[case-1].contour(np.linspace(0,H,M),np.linspace(0,delta,N),theta,levels=8)
+    axes[case-1].clabel(contours,fmt='%.2f')
+    axes[case-1].set(title=f'Case {case}: Bi={Bi:g}',xlabel='x / m',ylabel='y / m')
 
-# 输出：各列均由上述计算得到，相对偏差以二维效率为基准。
+# 输出：表4-5的各列均为计算结果；图4-16为两工况等温线。
 print('工况   节点M×N       Bi       η二维       η一维       相对偏差/%')
-for case, nx, ny, Bi, eta, eta_1d, deviation in summary:
-    grid = f'{nx}×{ny}'
-    print(f'{case:4d} {grid:>9s} {Bi:9.3f} {eta:11.3f} {eta_1d:11.3f} {deviation:13.3f}')
+for case,M,N,Bi,eta,eta_1d,deviation in summary:
+    grid = f'{M}×{N}'
+    Bi_text = f'{Bi:.2f}' if case==1 else f'{Bi:.1f}'
+    deviation_text = f'{deviation:.2f}%' if case==1 else f'{deviation:.1f}%'
+    print(f'{case:4d} {grid:>9s} {Bi_text:>9s} {eta:11.3f} {eta_1d:11.3f} {deviation_text:>13s}')
 fig.tight_layout()
 plt.show()
