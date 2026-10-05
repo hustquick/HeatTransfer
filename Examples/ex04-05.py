@@ -57,6 +57,6 @@ for case, (h,lambda_,delta,H) in enumerate(conditions, start=1):
 print('工况   节点M×N       Bi       η二维       η一维       相对偏差/%')
 for case, nx, ny, Bi, eta, eta_1d, deviation in summary:
     grid = f'{nx}×{ny}'
-    print(f'{case:4d} {grid:>9s} {Bi:9.3f} {eta:11.6f} {eta_1d:11.6f} {deviation:13.3f}')
+    print(f'{case:4d} {grid:>9s} {Bi:9.3f} {eta:11.3f} {eta_1d:11.3f} {deviation:13.3f}')
 fig.tight_layout()
 plt.show()
