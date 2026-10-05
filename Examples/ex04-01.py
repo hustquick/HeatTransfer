@@ -1,24 +1,36 @@
-import numpy as np
+# 例题 4-1：二维稳态导热问题的数值解法，高斯-赛德尔迭代法
+# 方程组：
+# 8t1 + 2t2 +  t3     = 29
+#  t1 + 5t2 + 2t3     = 32
+# 2t1 +  t2 + 4t3     = 28
 
-# 已知条件：教材 p.157，初值为零。
-t = np.zeros(3)
-eps = 5e-5
+# 初始值
+t1 = 0.0
+t2 = 0.0
+t3 = 0.0
 
-# 求解：高斯-赛德尔法，每求出一个温度就立即用于后面的方程。
-print('迭代次数      t1          t2          t3')
-print(f'{0:4d}', *[f'{v:11.5f}' for v in t])
-for k in range(1, 101):
-    t_old = t.copy()
-    t[0] = (29 - 2*t[1] - t[2]) / 8
-    t[1] = (32 - t[0] - 2*t[2]) / 5
-    t[2] = (28 - 2*t[0] - t[1]) / 4
-    print(f'{k:4d}', *[f'{v:11.5f}' for v in t])
-    if np.max(np.abs(t - t_old)) < eps:
+# 收敛阈值和最大迭代次数
+eps = 1e-4
+max_iter = 100
+
+print(f"{'迭代次数':<6} {'t1':>10} {'t2':>10} {'t3':>10}")
+print(f"{0:<6} {t1:10.3f} {t2:10.3f} {t3:10.3f}")
+
+for k in range(1, max_iter + 1):
+    t1_new = (29 - 2 * t2 - t3) / 8
+    t2_new = (32 - t1_new - 2*t3) / 5
+    t3_new = (28 - 2*t1_new - t2_new) / 4
+
+    print(f"{k:<6} {t1_new:10.3f} {t2_new:10.3f} {t3_new:10.3f}")
+
+    error = max(abs(t1_new-t1), abs(t2_new-t2), abs(t3_new-t3))
+    t1, t2, t3 = t1_new, t2_new, t3_new
+    if error < eps:
         break
+
 else:
     raise RuntimeError('迭代未收敛')
 
-# 输出：代回原方程检查残差。
-A = np.array([[8, 2, 1], [1, 5, 2], [2, 1, 4]])
-b = np.array([29, 32, 28])
-print(f'最大方程残差 = {np.max(np.abs(A @ t - b)):.2e}')
+# 输出：代回原方程。
+residual = max(abs(8*t1+2*t2+t3-29), abs(t1+5*t2+2*t3-32), abs(2*t1+t2+4*t3-28))
+print(f'最大方程残差：{residual:.3e}')
