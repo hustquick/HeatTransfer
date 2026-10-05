@@ -7,6 +7,35 @@ import matplotlib.pyplot as plt
 ratio_list = [2, 3, 4]
 m_list = [0.1, 0.5, 1, 1.5, 2, 2.5]
 
+# 表4-2：按教材式(4-24)、(4-25)计算，r2/r1=2、m=2。
+# N为包含肋根和肋端的节点数；端部采用教材的一阶条件Θ_N=Θ_(N-1)。
+node_list = [8, 16, 20, 36, 64, 100]
+eta_table42 = []
+for N in node_list:
+    R_nodes = np.linspace(1, 2, N)
+    dR = R_nodes[1]-R_nodes[0]
+    A_fd = np.zeros((N, N))
+    b_fd = np.zeros(N)
+    A_fd[0, 0] = 1
+    b_fd[0] = 1
+    for i in range(1, N-1):
+        A_fd[i, i-1] = 1-dR/(2*R_nodes[i])
+        A_fd[i, i] = -2-2*2**2*dR**2
+        A_fd[i, i+1] = 1+dR/(2*R_nodes[i])
+    A_fd[-1, -1] = 1
+    A_fd[-1, -2] = -1
+    theta_fd = np.linalg.solve(A_fd, b_fd)
+    # 节点代表的环形面积：内部边界取相邻节点中点，两端为半控制体。
+    bounds = np.r_[R_nodes[0], (R_nodes[:-1]+R_nodes[1:])/2, R_nodes[-1]]
+    area_fd = 2*np.pi*np.diff(bounds**2)
+    eta_table42.append(np.sum(area_fd*theta_fd)/np.sum(area_fd))
+
+print('表4-2：节点数对肋效率的影响（r2/r1=2，m=2）')
+print('N', *[f'{N:10d}' for N in node_list])
+print('η', *[f'{eta:10.3f}' for eta in eta_table42])
+print('η详细值', *[f'{eta:10.6f}' for eta in eta_table42])
+print()
+
 # 求解：径向环形控制体，两大面散热，肋根 Θ=1。
 # 本程序采用单元中心热平衡离散，网格数与课本节点数N不同。
 efficiencies = []
@@ -15,7 +44,7 @@ for ratio in ratio_list:
     R_1, R_2 = 1/(ratio-1), ratio/(ratio-1)
     curve = []
     for m in m_list:
-        for n in [20, 40, 80, 160]:
+        for n in [8, 16, 20, 36, 64, 100]:
             faces = np.linspace(R_1,R_2,n+1)
             R = (faces[:-1]+faces[1:])/2
             G = 2*np.pi/np.log(R[1:]/R[:-1])
@@ -27,8 +56,6 @@ for ratio in ratio_list:
             b[0] = G_base
             theta = np.linalg.solve(A,b)
             eta = np.sum(area*theta)/np.sum(area)
-            if ratio == 2 and m == 2:
-                print(f'网格校核：控制体数={n:3d}，η={eta:.6f}')
         # 独立校核：修正贝塞尔函数的解析环肋解。
         k = np.sqrt(2)*m
         coefficients = np.linalg.solve(
