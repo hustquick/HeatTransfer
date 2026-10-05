@@ -32,7 +32,6 @@ for N in node_list:
 print('表4-2：节点数对肋效率的影响（r2/r1=2，m=2）')
 print('N', *[f'{N:10d}' for N in node_list])
 print('η', *[f'{eta:10.3f}' for eta in eta_table42])
-print('η详细值', *[f'{eta:10.6f}' for eta in eta_table42])
 print()
 
 # 求解：径向环形控制体，两大面散热，肋根 Θ=1。
@@ -62,7 +61,7 @@ for ratio in ratio_list:
 print('\n环肋效率 η（行：r2/r1；列：m）')
 print('r2/r1', *[f'{m:10g}' for m in m_list])
 for ratio, curve in zip(ratio_list, efficiencies):
-    print(f'{ratio:5d}', *[f'{eta:10.6f}' for eta in curve])
+    print(f'{ratio:5d}', *[f'{eta:10.3f}' for eta in curve])
 plt.xlabel('m = H sqrt(h / (lambda delta))')
 plt.ylabel('Annular fin efficiency')
 plt.grid()
