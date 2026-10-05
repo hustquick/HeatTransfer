@@ -3,20 +3,16 @@ from scipy.sparse import lil_matrix
 from scipy.sparse.linalg import spsolve
 import matplotlib.pyplot as plt
 
-# 已知条件：教材 p.169–170；计算半厚度 δ 的区域，底边对称。
-# 按题目、图4-14和表4-4，采用二维稳态导热、肋端对流。
-# 原文假设栏“一维稳态导热”和“顶端绝热”与本例二维计算及其边界条件矛盾。
-# 表4-4勘误：3b的系数2属于左邻点；4b左端为Θ[M,1]、分母2+Bi_Δ。
-# 下述控制体热平衡自动给出正确系数，推导见ex04-05.md。
+# 已知条件：计算半厚度δ区域，肋根定温，底部对称绝热。
+# 上表面及肋端对流；h、λ、δ、H分别为换热系数、导热系数、半厚度、肋高。
 conditions = [(50,100,0.02,0.04), (400,8,0.02,0.08)]
 
 # 求解：Θ=(t-t_f)/(t_0-t_f)，肋根 Θ=1，其他外边界对流。
 summary = []
 fig, axes = plt.subplots(1, 2, figsize=(11, 4))
 for case, (h,lambda_,delta,H) in enumerate(conditions, start=1):
-    nx = round(H/0.005)+1
-    # 半厚度网格由同一 Δx=Δy 计算，保留教材 9×5 和 17×5 网格。
-    dx = 0.005
+    dx = 0.005  # Δx=Δy
+    nx = round(H/dx)+1
     ny = round(delta/dx)+1
     ids = np.arange(nx*ny).reshape(ny,nx)
     A = lil_matrix((nx*ny,nx*ny))
@@ -45,31 +41,22 @@ for case, (h,lambda_,delta,H) in enumerate(conditions, start=1):
     w_y=np.r_[0.5,np.ones(ny-2),0.5]
     q_half=h*dx*(np.dot(w_x,theta[-1])+np.dot(w_y,theta[:,-1]))
     eta=q_half/(h*(H+delta))
-    print(f'h={h:g}，λ={lambda_:g}，网格 {nx}×{ny}，η二维={eta:.6f}')
     # 一维计算：修正肋高的一维近似，H_c=H+δ。
     m=np.sqrt(h/(lambda_*delta))
     eta_1d=np.tanh(m*(H+delta))/(m*(H+delta))
 
-    # 输出
-    print(f'一维计算 η={eta_1d:.6f}，二维相对差={abs(eta_1d-eta)/eta*100:.3f}%')
-    print('Θ矩阵：从中心对称面至上表面，从肋根至肋端。')
-    print(theta)
-
     Bi = h*delta/lambda_
-    summary.append((case, Bi, eta, eta_1d, abs(eta_1d-eta)/eta*100))
+    summary.append((case, nx, ny, Bi, eta, eta_1d, abs(eta_1d-eta)/eta*100))
     x = np.linspace(0, H, nx)
     y = np.linspace(0, delta, ny)
     contours = axes[case-1].contour(x, y, theta, levels=8)
     axes[case-1].clabel(contours, fmt='%.2f')
     axes[case-1].set(title=f'Case {case}: Bi = {Bi:g}', xlabel='x / m', ylabel='y / m')
 
-# 输出：按表4-5的行列方向排列；教材参考值另列，便于核对。
-print('\n工况       Bi       η二维       η一维       相对偏差/%')
-for case, Bi, eta, eta_1d, deviation in summary:
-    print(f'{case:4d} {Bi:9.3f} {eta:11.6f} {eta_1d:11.6f} {deviation:13.3f}')
-print('\n教材表4-5参考值（不参与计算）')
-print('工况  节点M×N    Bi    η二维    η一维    相对偏差')
-print('   1      9×5  0.01    0.973    0.971       0.21%')
-print('   2     17×5  1.00    0.186    0.206       10.8%')
+# 输出：各列均由上述计算得到，相对偏差以二维效率为基准。
+print('工况   节点M×N       Bi       η二维       η一维       相对偏差/%')
+for case, nx, ny, Bi, eta, eta_1d, deviation in summary:
+    grid = f'{nx}×{ny}'
+    print(f'{case:4d} {grid:>9s} {Bi:9.3f} {eta:11.6f} {eta_1d:11.6f} {deviation:13.3f}')
 fig.tight_layout()
 plt.show()
