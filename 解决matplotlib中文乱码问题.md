@@ -1,119 +1,41 @@
-# 解决macOS 和 Linux系统中matplotlib 中文乱码问题
+# Matplotlib 中文绘图字体规范
 
-## 1. 先修改 matplotlibrc 文件
-
-运行以下代码，进入vim   
-```python
-import os
-import matplotlib
-st = 'vim ' + matplotlib.matplotlib_fname()
-os.system(st)
-```
-   
-在 vim 中使用`/font.family`命令找到#font.family所在行，将`#font.family`前的`#`去掉；
-
-使用`/font.sans-serif`命令找到#font.sans-serif所在行，[将`#font.sans-serif`前的`#`去掉，并加上`SimHei`字体](https://cdn.jsdelivr.net/gh/hustquick/figures@master/uPic/R8dkS7.png)；
-
-使用`/axes.unicode_minus`命令找到[#axes.unicode_minus](https://cdn.jsdelivr.net/gh/hustquick/figures@master/uPic/4wvvQf.png)所在行，[将`#axes.unicode_minus`前的`#`去掉，并把`True`改为`False`](https://cdn.jsdelivr.net/gh/hustquick/figures@master/uPic/ndCghW.png)。
-
-输入`:x`命令，保存并退出。
-
-## 2. 将 SimHei.ttf 文件复制到 matplotlib 的字体文件夹
-
-a. 将以下代码保存为copy_SimHei.py文件
-   
-```python
-import os
-import matplotlib
-path = matplotlib.get_data_path() + '/fonts/ttf/SimHei.ttf'
-st = 'cp SimHei.ttf ' + path
-os.system(st)
-```
- 
-b. 在网站[xiazaiziti](http://www.xiazaiziti.com/210356.html)上下载 SimHei.ttf 文件，并将其移动到 copy_SimHei.py 所在文件夹；
-      
-c. 运行 copy_SimHei.py 文件。
-   
-## 3. 重新加载字体
-
-运行以下代码
-   
-```python
-import shutil
-import matplotlib
-shutil.rmtree(matplotlib.get_cachedir())  
-```
-安装了字体后，在 matplotlib 里使用的中文字符串，前面不需要再加 u ，也不需要再在代码里定义字体。​   
-
-## 4. 测试
-
-运行以下测试代码
+项目中所有含中文的标题、坐标轴、图例或文字标注，均在创建图像前调用公共字体配置：
 
 ```python
-# 随便绘制一个饼图
 import matplotlib.pyplot as plt
- 
-fig1 = plt.figure()  # 先创建一个图像对象
-plt.pie([0.5, 0.3, 0.2],  # 值
-        labels=['我', '你', '它'],  # 标签
-        explode=(0, 0.2, 0),  # （爆裂）距离
-        autopct='%1.1f%%',   # 显示百分数格式
-        shadow=True)  # 是否显示阴影
-plt.show()
+from Functions.Plotting import configure_chinese_font
+
+configure_chinese_font()
+fig, ax = plt.subplots()
+ax.set_xlabel(r'传热系数($\mathrm{W/m^2 \cdot K}$)')
+ax.set_ylabel(r'散热量($\mathrm{W}$)')
+ax.set_title('散热量与传热系数的关系')
 ```
 
-观察中文字符是否不再是乱码。
+模块路径应沿用脚本现有的项目导入方式；从 `Problems` 或 `Examples` 目录运行时，需将项目根目录加入 `sys.path`。
 
-# 解决 Windows 中的 matplotlib 中文乱码问题
+## 统一配置
 
-## 1. 先修改 matplotlibrc 文件
-
-运行以下代码，进入vim   
-```python
-import os
-import matplotlib
-st = 'vim ' + matplotlib.matplotlib_fname()
-os.system(st)
-```
-   
-在 vim 中使用`/font.family`命令找到#font.family所在行，将`#font.family`前的`#`去掉；
-
-使用`/font.sans-serif`命令找到#font.sans-serif所在行，[将`#font.sans-serif`前的`#`去掉，并加上`SimHei`字体](https://cdn.jsdelivr.net/gh/hustquick/figures@master/uPic/R8dkS7.png)；
-
-使用`/axes.unicode_minus`命令找到[#axes.unicode_minus](https://cdn.jsdelivr.net/gh/hustquick/figures@master/uPic/4wvvQf.png)所在行，[将`#axes.unicode_minus`前的`#`去掉，并把`True`改为`False`](https://cdn.jsdelivr.net/gh/hustquick/figures@master/uPic/ndCghW.png)。
-
-输入`:x`命令，保存并退出。
-
-## 2. 将 SimHei.ttf 文件复制到 matplotlib 的字体文件夹
-
-a. 将以下代码保存为copy_SimHei.py文件
-   
-```python
-import os
-import matplotlib
-path = matplotlib.get_data_path() + '\\fonts\\ttf\\SimHei.ttf'
-st = 'copy SimHei.ttf ' + path
-os.system(st)
-```
-b. 在网站[xiazaiziti](http://www.xiazaiziti.com/210356.html)上下载 SimHei.ttf 文件，并将其移动到 copy_SimHei.py 所在文件夹；
-    
-c. 运行 copy_SimHei.py 文件。
-
-## 3. 测试
-
-运行以下测试代码
+配置位于 `Functions/Plotting.py`，与原 `pr01-41.py` 设置一致：
 
 ```python
-# 随便绘制一个饼图
-import matplotlib.pyplot as plt
- 
-fig1 = plt.figure()  # 先创建一个图像对象
-plt.pie([0.5, 0.3, 0.2],  # 值
-        labels=['我', '你', '它'],  # 标签
-        explode=(0, 0.2, 0),  # （爆裂）距离
-        autopct='%1.1f%%',   # 显示百分数格式
-        shadow=True)  # 是否显示阴影
-plt.show()
+plt.rcParams['font.family'] = 'sans-serif'
+plt.rcParams['font.sans-serif'] = [
+    'Heiti SC', 'PingFang SC', 'Microsoft YaHei', 'SimHei',
+    'Noto Sans CJK SC', 'Arial Unicode MS', 'DejaVu Sans',
+]
+plt.rcParams['axes.unicode_minus'] = False
 ```
 
-观察中文字符是否不再是乱码。
+Matplotlib 按列表顺序查找可用字体。macOS 优先使用 Heiti SC；Windows 可使用微软雅黑或 SimHei；Linux 可使用 Noto Sans CJK SC。最后的 DejaVu Sans 用于普通文字回退，并不保证支持中文。如果系统没有任何支持中文的候选字体，仍需安装中文字体。
+
+`axes.unicode_minus=False` 使用普通减号显示负刻度，避免部分字体缺少 Unicode 负号。包含 LaTeX 反斜杠的标签使用原始字符串 `r'...'`。
+
+## 后续编码要求
+
+- 新增或修改含中文的图时，在创建图像前调用 `configure_chinese_font()`。
+- 不在各题中重复维护字体列表，也不再单独指定 `SimHei`。
+- 同一规则适用于 Python 脚本和 Jupyter 笔记本。
+- 无须修改系统 `matplotlibrc`、向 Matplotlib 安装目录复制字体或删除整个缓存目录。
+- 修改后实际绘制图像，检查标题、坐标轴、图例、标注以及缺字警告。

@@ -3,7 +3,7 @@ sys.path.append("..")
 from Functions.UnsteadyStateConduction import t_x_for_constant_t_w
 from scipy.optimize import root, minimize
 import numpy as np
-from math import erf
+from scipy.special import erf
 from CoolProp.CoolProp import PropsSI as psi
 import scipy.constants as sc
 

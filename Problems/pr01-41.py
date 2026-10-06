@@ -6,6 +6,10 @@ import sys
 sys.path.append("..")
 from Functions.Self_defined import save_pdf
 
+from Functions.Plotting import configure_chinese_font
+
+configure_chinese_font()
+
 delta = 200e-3
 h = 3
 w = 6
@@ -27,8 +31,8 @@ for h, Q_ in zip(h_out, Q):
     print(f'当传热系数为{h} W/m^2-K 时，散热量为{Q_:.2f} W')
 fig, ax = plt.subplots()
 ax.plot(h_out, Q, 'o-')
-ax.set_xlabel('传热系数($\mathrm{W/m^2 \cdot K}$)')
-ax.set_ylabel('散热量($\mathrm{W}$)')
+ax.set_xlabel(r'传热系数($\mathrm{W/m^2 \cdot K}$)')
+ax.set_ylabel(r'散热量($\mathrm{W}$)')
 ax.set_title('散热量与传热系数的关系')
 name = os.path.basename(__file__).split(".")[0]
 save_pdf(name, plt)

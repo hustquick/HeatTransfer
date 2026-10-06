@@ -1,7 +1,6 @@
 import numpy as np
-from scipy.special import jv
+from scipy.special import jv, erf, erfc
 from scipy.optimize import root
-from math import erf, erfc
 
 
 def get_a(lambda_, rho, c):

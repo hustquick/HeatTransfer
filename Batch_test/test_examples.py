@@ -1,12 +1,50 @@
 import os
+from pathlib import Path
+import runpy
+import sys
+import traceback
 
-folder = 'Examples'
-files = os.listdir('../' + folder)
-files.sort()
-os.chdir(f'../{folder}')
-for file in files:
-    if file.endswith(".py"):
-        print('*'*10 + f' {file} ' + '*'*10)
-        os.system(r'python ' + file)
-os.chdir('../Batch_test')
-print('-'*20 + '运行完毕' + '-'*20)
+import matplotlib.pyplot as plt
+
+
+def main():
+    examples_dir = Path(__file__).resolve().parents[1] / 'Examples'
+    original_cwd = Path.cwd()
+    original_path = sys.path[:]
+    original_argv = sys.argv[:]
+    original_show = plt.show
+    failures = []
+
+    # 每个例题只生成图，全部运行完后再统一显示，避免逐题等待关窗。
+    plt.show = lambda *args, **kwargs: None
+    try:
+        sys.path.insert(0, str(examples_dir.parent))
+        sys.path.insert(0, str(examples_dir))
+        for file in sorted(examples_dir.glob('*.py')):
+            print('*' * 10 + f' {file.name} ' + '*' * 10, flush=True)
+            os.chdir(examples_dir)
+            sys.argv = [str(file)]
+            try:
+                runpy.run_path(str(file), run_name='__main__')
+            except SystemExit as exc:
+                if exc.code not in (None, 0):
+                    failures.append(file.name)
+                    traceback.print_exc()
+            except Exception:
+                failures.append(file.name)
+                traceback.print_exc()
+    finally:
+        plt.show = original_show
+        os.chdir(original_cwd)
+        sys.path[:] = original_path
+        sys.argv = original_argv
+
+    print('-' * 20 + '运行完毕' + '-' * 20, flush=True)
+    if failures:
+        print('运行失败的例题：' + '、'.join(failures), flush=True)
+    if plt.get_fignums():
+        original_show()
+
+
+if __name__ == '__main__':
+    main()
