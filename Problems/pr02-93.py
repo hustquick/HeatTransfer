@@ -3,8 +3,13 @@ from scipy.special import iv
 import matplotlib.pyplot as plt
 import os
 import sys
-sys.path.append("..")
-from Functions.Self_defined import save_pdf
+from pathlib import Path
+
+project_root = str(Path(__file__).resolve().parents[1])
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
+from Functions.Plotting import save_pdf
+
 
 delta = 0.0001
 x = np.linspace(delta, 2.5, 1000)
@@ -18,5 +23,6 @@ ax.plot(x, eta)
 ax.set_xlabel('$x$')
 ax.set_ylabel('$\eta(x)$')
 name = os.path.basename(__file__).split(".")[0]
-save_pdf(name, plt)
+save_pdf(name, fig)
+plt.show()
 

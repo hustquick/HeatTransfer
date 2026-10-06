@@ -1,6 +1,6 @@
 import numpy as np
-from scipy.special import jv, erf, erfc
-from scipy.optimize import root
+from scipy.special import jv, jn_zeros, erf, erfc
+from scipy.optimize import brentq
 
 
 def get_a(lambda_, rho, c):
@@ -133,45 +133,29 @@ def Q_to_Q_0_ratio(mu, Fo, shape):
 def get_mu(Bi, shape):
     """
     求解非稳态导热正规状况阶段的mu的值。
-    当Bi不为无穷大时，可以通过root函数求解超越方程。
-    当Bi为无穷大时，采用工程近似拟合公式计算
+    当Bi不为无穷大时，通过brentq在第一特征根所在区间求解超越方程。
+    当Bi为无穷大时，返回第一特征根的精确极限值
 
     :param Bi: Bi数，固体内部单位导热面积上的导热热阻与单位表面积上的换热热阻之比
     :param shape: 形状，可取'P'，'C'或'S'，分别对应平板，圆柱，球
     :return: mu
     """
-    a_list = [0.4022, 0.1700, 0.0988]
-    if Bi <= 0:
-        print('Bi数必须大于0，才能计算mu。')
-        return None
-    shape_list = ['P', 'C', 'S']
-    if shape not in shape_list:
-        print('形状指定错误。\n请指定为P（平板）、C（圆柱）、S（球）之一。')
-        return None
+    if shape not in ('P', 'C', 'S'):
+        raise ValueError("shape 必须为 P（平板）、C（圆柱）或 S（球）。")
+    if np.isnan(Bi) or Bi <= 0:
+        raise ValueError('Bi 必须大于 0。')
+
+    # 第一特征根位于 0 与第一极限根之间，使用无奇点形式避免跨越正切极点。
+    limit = {'P': np.pi / 2, 'C': jn_zeros(0, 1)[0], 'S': np.pi}[shape]
+    if Bi == np.inf:
+        return limit
     if shape == 'P':
-        if Bi == np.inf:
-            a = a_list[0]
-            mu = np.sqrt(1 / a)
-            return mu
-        else:
-            mu = root(lambda mu: np.tan(mu)*mu - Bi, 1).x[0]
-            return mu
+        equation = lambda mu: mu * np.sin(mu) - Bi * np.cos(mu)
     elif shape == 'C':
-        if Bi == np.inf:
-            a = a_list[1]
-            mu = np.sqrt(1 / a)
-            return mu
-        else:
-            mu = root(lambda mu: mu * jv(1, mu) / jv(0, mu) - Bi, 1).x[0]
-            return mu
+        equation = lambda mu: mu * jv(1, mu) - Bi * jv(0, mu)
     else:
-        if Bi == np.inf:
-            a = a_list[2]
-            mu = np.sqrt(1 / a)
-            return mu
-        else:
-            mu = root(lambda mu: 1 - mu / np.tan(mu) - Bi, 1).x[0]
-            return mu
+        equation = lambda mu: np.cos(mu) + (Bi - 1) * np.sinc(mu / np.pi)
+    return brentq(equation, 0, limit)
 
 
 def t_x_for_constant_t_w(x, tau, t_0, t_w, a):

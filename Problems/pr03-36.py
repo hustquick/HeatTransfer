@@ -1,10 +1,15 @@
 import numpy as np
 import sys
-sys.path.append("..")
+from pathlib import Path
+
+project_root = str(Path(__file__).resolve().parents[1])
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
 from Functions.UnsteadyStateConduction import theta_to_theta_0_ratio, get_a, get_mu, get_Bi, get_Fo
 import matplotlib.pyplot as plt
 import os
-from Functions.Self_defined import check_Fo, save_pdf
+from Functions.Self_defined import check_Fo
+from Functions.Plotting import save_pdf
 
 t_0 = 30
 t_oo = 1400
@@ -42,6 +47,7 @@ ax.set_xlabel(r'$\tau$/s')
 ax.set_ylabel('$t/\mathrm{^\circ C}$')
 plt.legend()
 name = os.path.basename(__file__).split(".")[0]
-save_pdf(name, plt)
+save_pdf(name, fig)
+plt.show()
 
 map(check_Fo, Fo)  # 由于Fo是容器，需要使用map函数对容器中的每个元素调用check_Fo函数

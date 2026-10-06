@@ -1,6 +1,10 @@
 from scipy.optimize import root
 import sys
-sys.path.append("..")
+from pathlib import Path
+
+project_root = str(Path(__file__).resolve().parents[1])
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
 from Functions.SteadyStateConduction import cylindrical_wall_R
 from Appendix.Appendix4_lambda_ import get_lambda_
 

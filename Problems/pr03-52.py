@@ -1,5 +1,9 @@
 import sys
-sys.path.append("..")
+from pathlib import Path
+
+project_root = str(Path(__file__).resolve().parents[1])
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
 from Functions.UnsteadyStateConduction import get_a, t_x_for_constant_t_w
 from scipy.optimize import root
 import numpy as np
@@ -7,7 +11,8 @@ from CoolProp.CoolProp import PropsSI as psi
 import scipy.constants as sc
 import matplotlib.pyplot as plt
 import os
-from Functions.Self_defined import save_pdf
+from Functions.Plotting import save_pdf
+
 
 t_max = 48
 tau_s = 10
@@ -44,4 +49,5 @@ ax.plot(t_w_lt, np.array(x_lt)*1000)
 ax.set_xlabel('$t_w/\mathrm{^\circ C}$')
 ax.set_ylabel(r'$x$/mm')
 name = os.path.basename(__file__).split(".")[0]
-save_pdf(name, plt)
+save_pdf(name, fig)
+plt.show()

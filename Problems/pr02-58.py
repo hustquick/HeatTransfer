@@ -3,8 +3,13 @@ from scipy.integrate import solve_bvp
 import matplotlib.pyplot as plt
 import os
 import sys
-sys.path.append("..")
-from Functions.Self_defined import save_pdf
+from pathlib import Path
+
+project_root = str(Path(__file__).resolve().parents[1])
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
+from Functions.Plotting import save_pdf
+
 
 lambda_ = 177
 delta = 6e-3
@@ -43,5 +48,6 @@ plt.grid()
 plt.xlabel('$x(\mathrm{m})$')
 plt.ylabel('$t(\mathrm{^\circ C})$')
 name = os.path.basename(__file__).split(".")[0]
-save_pdf(name, plt)
+save_pdf(name, plt.gcf())
+plt.show()
 print(f'最大温度为{t_plot[-1]:.2f}degC')

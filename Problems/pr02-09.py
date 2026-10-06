@@ -1,7 +1,11 @@
 import numpy as np
 
 import sys
-sys.path.append("..")
+from pathlib import Path
+
+project_root = str(Path(__file__).resolve().parents[1])
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
 from Appendix import Appendix5_air_physical_properties as ap5
 
 delta_1 = delta_2 = 6e-3

@@ -1,7 +1,11 @@
 import numpy as np
 from scipy.optimize import root
 import sys
-sys.path.append("..")
+from pathlib import Path
+
+project_root = str(Path(__file__).resolve().parents[1])
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
 from Functions.UnsteadyStateConduction import t_x_for_constant_h, get_a, get_mu, get_Bi, get_Fo, theta_to_theta_0_ratio
 import matplotlib.pyplot as plt
 from scipy.integrate import solve_bvp

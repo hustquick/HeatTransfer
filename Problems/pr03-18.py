@@ -1,12 +1,17 @@
 import numpy as np
 from scipy.optimize import root
 import sys
-sys.path.append("..")
+from pathlib import Path
+
+project_root = str(Path(__file__).resolve().parents[1])
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
 from Functions.UnsteadyStateConduction import theta_to_theta_0_ratio, get_a, get_mu, get_Bi, get_Fo
 import matplotlib.pyplot as plt
 from scipy.integrate import solve_bvp
 import os
-from Functions.Self_defined import find_nearest, save_pdf
+from Functions.Self_defined import find_nearest
+from Functions.Plotting import save_pdf
 
 d = 1e-3
 t_oo = 25
@@ -49,7 +54,8 @@ plt.grid()
 plt.xlabel(r'$\tau$/s')
 plt.ylabel(r'$t/\mathrm{^\circ C}$')
 name = os.path.basename(__file__).split(".")[0]
-save_pdf(name, plt)
+save_pdf(name, plt.gcf())
+plt.show()
 
 t_search = t_balance - Delta_t
 arg = find_nearest(t_plot, t_search)

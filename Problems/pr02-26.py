@@ -1,7 +1,11 @@
 import scipy.constants as sc
 
 import sys
-sys.path.append("..")
+from pathlib import Path
+
+project_root = str(Path(__file__).resolve().parents[1])
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
 from Functions.SteadyStateConduction import spherical_wall_R, cylindrical_wall_R
 
 

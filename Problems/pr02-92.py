@@ -1,11 +1,15 @@
 import numpy as np
 import sys
-sys.path.append("..")
+from pathlib import Path
+
+project_root = str(Path(__file__).resolve().parents[1])
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
 from Functions.SteadyStateConduction import fin_tip_efficiency, overall_fin_surface_efficiency
 import matplotlib.pyplot as plt
 import os
-from Functions.Self_defined import save_pdf
-from Functions.Plotting import configure_chinese_font
+
+from Functions.Plotting import configure_chinese_font, save_pdf
 
 configure_chinese_font()
 
@@ -46,4 +50,5 @@ ax.set_xlabel(r'空气流速（$\mathrm{m/s}$）')
 ax.set_ylabel(r'散热量（$\mathrm{W}$）')
 ax.set_title('散热量随空气流速的变化')
 name = os.path.basename(__file__).split(".")[0]
-save_pdf(name, plt)
+save_pdf(name, fig)
+plt.show()

@@ -3,10 +3,14 @@ import matplotlib.pyplot as plt
 import os
 
 import sys
-sys.path.append("..")
-from Functions.Self_defined import save_pdf
+from pathlib import Path
 
-from Functions.Plotting import configure_chinese_font
+project_root = str(Path(__file__).resolve().parents[1])
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
+
+
+from Functions.Plotting import configure_chinese_font, save_pdf
 
 configure_chinese_font()
 
@@ -35,4 +39,5 @@ ax.set_xlabel(r'传热系数($\mathrm{W/m^2 \cdot K}$)')
 ax.set_ylabel(r'散热量($\mathrm{W}$)')
 ax.set_title('散热量与传热系数的关系')
 name = os.path.basename(__file__).split(".")[0]
-save_pdf(name, plt)
+save_pdf(name, fig)
+plt.show()

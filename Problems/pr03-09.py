@@ -2,8 +2,13 @@ import numpy as np
 import matplotlib.pyplot as plt
 import os
 import sys
-sys.path.append("..")
-from Functions.Self_defined import save_pdf
+from pathlib import Path
+
+project_root = str(Path(__file__).resolve().parents[1])
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
+from Functions.Plotting import save_pdf
+
 
 c = 2.094e3
 t_0 = 20
@@ -21,4 +26,5 @@ ax.set_xlabel(r'$\tau$')
 ax.set_ylabel(r'$\theta$')
 ax.legend()
 name = os.path.basename(__file__).split(".")[0]
-save_pdf(name, plt)
+save_pdf(name, fig)
+plt.show()

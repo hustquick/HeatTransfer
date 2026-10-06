@@ -22,13 +22,13 @@ ax.set_title('散热量与传热系数的关系')
 ```python
 plt.rcParams['font.family'] = 'sans-serif'
 plt.rcParams['font.sans-serif'] = [
-    'Heiti SC', 'PingFang SC', 'Microsoft YaHei', 'SimHei',
+    'PingFang SC', 'Heiti SC', 'Microsoft YaHei', 'SimHei',
     'Noto Sans CJK SC', 'Arial Unicode MS', 'DejaVu Sans',
 ]
 plt.rcParams['axes.unicode_minus'] = False
 ```
 
-Matplotlib 按列表顺序查找可用字体。macOS 优先使用 Heiti SC；Windows 可使用微软雅黑或 SimHei；Linux 可使用 Noto Sans CJK SC。最后的 DejaVu Sans 用于普通文字回退，并不保证支持中文。如果系统没有任何支持中文的候选字体，仍需安装中文字体。
+Matplotlib 按列表顺序查找可用字体。macOS 优先使用 PingFang SC（苹方）；Windows 可使用微软雅黑或 SimHei；Linux 可使用 Noto Sans CJK SC。最后的 DejaVu Sans 用于普通文字回退，并不保证支持中文。如果系统没有任何支持中文的候选字体，仍需安装中文字体。
 
 `axes.unicode_minus=False` 使用普通减号显示负刻度，避免部分字体缺少 Unicode 负号。包含 LaTeX 反斜杠的标签使用原始字符串 `r'...'`。
 

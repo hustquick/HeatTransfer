@@ -1,11 +1,16 @@
 import sys
-sys.path.append("..")
+from pathlib import Path
+
+project_root = str(Path(__file__).resolve().parents[1])
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
 from Functions.SteadyStateConduction import fin_tip_efficiency
 import numpy as np
 from scipy.integrate import solve_bvp
 import matplotlib.pyplot as plt
 import os
-from Functions.Self_defined import find_nearest, save_pdf
+from Functions.Self_defined import find_nearest
+from Functions.Plotting import save_pdf
 
 h_i, h_o = 2, 10
 d_i, d_o = 25e-3, 30e-3
@@ -56,7 +61,8 @@ plt.grid()
 plt.xlabel('$x(\mathrm{m})$')
 plt.ylabel('$t(\mathrm{^\circ C})$')
 name = os.path.basename(__file__).split(".")[0]
-save_pdf(name, plt)
+save_pdf(name, plt.gcf())
+plt.show()
 
 arg = find_nearest(t_plot, t_search)
 print(f'温度为{t_search}°C的位置离手柄与锅体相接部分{x_plot[arg]:.3f} m')
