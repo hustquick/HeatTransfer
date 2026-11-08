@@ -118,9 +118,15 @@ ax.set_ylabel(r'散热量($\mathrm{W}$)')
 ax.set_title('散热量与传热系数的关系')
 ```
 
-字体候选顺序为 `PingFang SC`、`Heiti SC`、`Microsoft YaHei`、`SimHei`、`Noto Sans CJK SC`、`Arial Unicode MS`、`DejaVu Sans`。Matplotlib 会按顺序使用可用字体；系统仍需至少安装一种支持中文的候选字体，最后的 DejaVu Sans 不保证覆盖中文。
+字体优先从系统已安装字体中选择，并检查常用中文字形是否存在；找不到时尝试加载 `Functions/fonts/NotoSansCJKsc-Regular.otf`。如需在缺少中文字体的系统上使用，可先运行：
 
-这套配置适用于 macOS、Windows 和 Linux，无须修改系统 `matplotlibrc`。新增中文图时复用公共函数，不在各题中重复维护字体列表。详细说明见 [解决matplotlib中文乱码问题.md](解决matplotlib中文乱码问题.md)。
+```sh
+python scripts/install_chinese_font.py
+```
+
+安装脚本从 Google Noto CJK 官方仓库下载采用 SIL OFL 1.1 许可证的字体。下载完成后，离线运行不再需要网络。**仓库当前没有提交字体二进制文件**；如果希望克隆后在完全离线的 Linux 上直接运行，需要把字体文件和原始许可证声明一同纳入发布包。没有任何可用字体时会抛出明确错误，而非静默输出方框。
+
+新增中文图时复用公共函数，不在各题中重复维护字体列表。详细说明见 [解决matplotlib中文乱码问题.md](解决matplotlib中文乱码问题.md)。
 
 ## Jupyter 笔记本
 
