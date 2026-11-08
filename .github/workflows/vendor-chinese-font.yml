@@ -1,0 +1,39 @@
+name: Vendor open-source Chinese font
+on:
+  push:
+    branches: [improve/chinese-font-fallback]
+    paths:
+      - '.github/workflows/vendor-chinese-font.yml'
+permissions:
+  contents: write
+jobs:
+  vendor:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: improve/chinese-font-fallback
+      - name: Download official font and license
+        run: |
+          set -euo pipefail
+          mkdir -p Functions/fonts
+          curl --fail --location --retry 3 -o Functions/fonts/NotoSansCJKsc-Regular.otf \
+            https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/OTF/SimplifiedChinese/NotoSansCJKsc-Regular.otf
+          curl --fail --location --retry 3 -o Functions/fonts/OFL.txt \
+            https://raw.githubusercontent.com/notofonts/noto-cjk/main/LICENSE
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('Functions/fonts/NotoSansCJKsc-Regular.otf')
+          size = p.stat().st_size
+          print(f'Font size: {size / 1024 / 1024:.2f} MiB')
+          assert 100_000 < size < 100_000_000, 'Font must be under 100 MB'
+          assert p.read_bytes()[:4] == b'OTTO'
+          assert Path('Functions/fonts/OFL.txt').stat().st_size > 100
+          PY
+      - name: Commit font into pull request branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add Functions/fonts/NotoSansCJKsc-Regular.otf Functions/fonts/OFL.txt
+          git commit -m "Vendor Noto Sans CJK SC font and OFL license"
+          git push origin HEAD:improve/chinese-font-fallback
